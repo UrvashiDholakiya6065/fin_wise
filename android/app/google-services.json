@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "146733578533",
+    "project_id": "finwise-eed73",
+    "storage_bucket": "finwise-eed73.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146733578533:android:4c2417ac0c0e284bca02cc",
+        "android_client_info": {
+          "package_name": "com.example.fin_wise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmqsfqJDWs0MzjrEyKUDscQbFpldQL2Ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
