@@ -17,6 +17,7 @@ class IncomeCardWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+
         children: [
           Image.asset(ImagesWidget.incomeImg,height: 25,color: ColorsWidgets.mainAppColor,),
           SizedBox(height: 3,),

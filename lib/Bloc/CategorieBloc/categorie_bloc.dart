@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:fin_wise/Model/categorie_model.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Enum/enum.dart';
+import '../../Model/add_balance_model.dart';
 import '../../Network/Repository/repository.dart';
 import '../../Utilites/GlobalWidgets/Constant/user_uid.dart';
 import 'categorie_state.dart';
@@ -53,5 +54,6 @@ class CategorieBloc extends Bloc<CategorieEvent, CategorieState> {
 
     }
   }
+
   }
 

@@ -5,6 +5,7 @@ import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../Network/Services/notification_service.dart';
 import '../../SessionManage/shared_pref.dart';
 import '../../Utilites/GlobalWidgets/BiomatricService/biomatric_service.dart';
 import '../../Utilites/GlobalWidgets/PngImages/images_widget.dart';
@@ -23,6 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     check();
+    NotificationService.init();
+
   }
 
 

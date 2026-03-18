@@ -26,3 +26,17 @@ class LoginEvent extends AuthEvent {
 class LoginWithBiometricEvent extends AuthEvent {}
 class FetchUserEvent extends AuthEvent {}
 class LogoutEvent extends AuthEvent {}
+class EditProfileEvent extends AuthEvent {
+  final UserModel userModel;
+
+  EditProfileEvent({required this.userModel});
+}
+class ChangePasswordEvent extends AuthEvent {
+  final String currentPassword;
+  final String newPassword;
+
+  ChangePasswordEvent({
+    required this.currentPassword,
+    required this.newPassword,
+  });
+}

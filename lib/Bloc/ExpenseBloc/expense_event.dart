@@ -12,3 +12,11 @@ class GetExpenseByCategoryEvent extends ExpenseEvent {
 
  GetExpenseByCategoryEvent({required this.cateId});
 }
+class AddBalanceEvent extends ExpenseEvent{
+ final AddBalanceModel addBalanceModel;
+
+ AddBalanceEvent({required this.addBalanceModel});
+}
+
+class GetBalanceEvent extends ExpenseEvent{}
+

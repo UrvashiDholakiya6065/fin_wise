@@ -5,5 +5,7 @@ class SessionKeys {
   static const String fromSplash = 'fromSplash';
   static const String fingerprintSkipped = 'fingerprintSkipped';
   static const String uid = 'uid';
+  static const String cateId = 'cateId';
+  static const String balance = 'balance';
 
 }

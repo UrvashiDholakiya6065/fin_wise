@@ -7,26 +7,38 @@ class AuthState extends Equatable {
   final AuthStatus? registrationStatus;
   final BioStatus? biometricStatus;
   final UserModel? userModel;
+  final EditProfileStatus? editProfileStatus;
+  final ChangePasswordStatus? changePasswordStatus;
+  final String? changePasswordError;
+
 
 
   const AuthState({
     this.registrationStatus,
     this.biometricStatus,
-    this.userModel
+    this.userModel,
+    this.editProfileStatus,
+    this.changePasswordStatus,
+    this.changePasswordError
 
   });
 
   AuthState copyWith({
     AuthStatus? registrationStatus,
     BioStatus? biometricStatus,
-    UserModel? userModel
+    UserModel? userModel,
+    EditProfileStatus? editProfileStatus,
+    ChangePasswordStatus? changePasswordStatus,
+    String? changePasswordError,
 
   }) {
     return AuthState(
       registrationStatus: registrationStatus ?? this.registrationStatus,
       biometricStatus: biometricStatus ?? this.biometricStatus,
-      userModel: userModel??this.userModel
-
+      userModel: userModel??this.userModel,
+      editProfileStatus: editProfileStatus??this.editProfileStatus,
+      changePasswordStatus: changePasswordStatus??this.changePasswordStatus,
+      changePasswordError: changePasswordError ?? this.changePasswordError,
     );
   }
   @override
@@ -34,7 +46,9 @@ class AuthState extends Equatable {
   List<Object?> get props => [
     registrationStatus,
     biometricStatus,
-    userModel
-
+    userModel,
+    editProfileStatus,
+    changePasswordStatus,
+    changePasswordError
   ];
 }

@@ -77,4 +77,27 @@ class SharedPref {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(SessionKeys.uid);
   }
+
+
+  static Future<void> setCateId({required String cateId}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(SessionKeys.cateId,cateId);
+    print("Set CateId in Shared Pef............$cateId");
+  }
+
+  static Future<String?> getCateUid() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(SessionKeys.cateId);
+  }
+  static Future<void> setBalance({required double balance}) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble(SessionKeys.balance,balance);
+    print("Set balance remaning in Shared Pef............$balance");
+  }
+  static Future<double?> getBalance() async {
+    final prefs = await SharedPreferences.getInstance();
+    final value=prefs.getDouble(SessionKeys.balance);
+    print("get reaming in sharepre $value");
+    return value;
+  }
 }

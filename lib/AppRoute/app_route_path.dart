@@ -22,7 +22,12 @@ enum AppRoutePath {
   searchScreen('/SearchScreen','SearchScreen'),
   calenderScreen('/CalenderScreen','CalenderScreen'),
   categoriesDetailScreen('/CategoriesDetailScreen','CategoriesDetailScreen'),
-  addExpenseScreen('/AddExpenseScreen','AddExpenseScreen');
+  addExpenseScreen('/AddExpenseScreen','AddExpenseScreen'),
+  addBalanceScreen('/AddBalanceScreen','AddBalanceScreen'),
+  editProfileScreen('/EditProfile','EditProfile'),
+  settingScreen('/SettingScreen','SettingScreen'),
+  notificationSettingScreen('/NotificationSettingScreen','NotificationSettingScreen'),
+  passwordSettingScreen('/PasswordSettingScreen','PasswordSettingScreen');
 
   final String path;
   final String name;

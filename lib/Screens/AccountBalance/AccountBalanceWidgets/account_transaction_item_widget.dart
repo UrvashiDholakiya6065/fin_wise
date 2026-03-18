@@ -13,6 +13,8 @@ class AccountTransactionItemWidget {
     required BuildContext context,
     bool isExpense = false,}){
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           height: 45,

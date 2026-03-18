@@ -130,8 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         listener: (context, state) async {
                           if (state.registrationStatus == AuthStatus.success) {
                             // final idToken = await SharedPref.getUserIdAccessToken();
-                            // print("Login Token: $idToken");
-                            // await SharedPref.userIdAccessToken(idToken!);
+                              // print("Login Token: $idToken");
+                              // await SharedPref.userIdAccessToken(idToken!);
                             // await SharedPref.setFromSplash(false);
                             //
                             // appRoute.go(AppRoutePath.fingerprintScreen.path);
@@ -147,15 +147,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           }
 
-                          if (state.registrationStatus == AuthStatus.error) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Login Failed")),
-                            );
-                          }
+
 
                           if (state.registrationStatus == AuthStatus.error) {
+
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("login Failed")),
+                              SnackBar(content: Text("Login faild")),
                             );
                           }
                         },
@@ -182,7 +179,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             .trim(),
                                       ),
                                     ),
+                                  );   context.read<AuthBloc>().add(
+                                    FetchUserEvent(),
                                   );
+
 
                                   print("Login Success");
                                 } else {

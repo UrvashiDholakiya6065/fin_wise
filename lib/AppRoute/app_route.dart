@@ -1,12 +1,18 @@
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Model/categorie_model.dart';
 import 'package:fin_wise/Screens/AccountBalance/AccountBalanceScreen/account_balance_screen.dart';
+import 'package:fin_wise/Screens/AccountBalance/AccountBalanceScreen/add_balance_screen.dart';
 import 'package:fin_wise/Screens/AuthScreens/login_screen.dart';
 import 'package:fin_wise/Screens/AuthScreens/new_password_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Analysis/AnalysisScreen/analysis_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Categories/CategoriesScreen/categories_detail_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Home/HomeScreen/home_screen.dart';
+import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/edit_profile.dart';
+import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/notification_setting_screen.dart';
+import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/password_setting_screen.dart';
+import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/setting_screen.dart';
 import 'package:fin_wise/Screens/Search/SearchScreen/search_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import '../Screens/AuthScreens/fingerprint_screen.dart';
 import '../Screens/AuthScreens/forgot_password_screen.dart';
@@ -87,14 +93,34 @@ GoRouter appRoute = GoRouter(
     GoRoute(
       path: AppRoutePath.calenderScreen.path,
       builder: (context, state) => CalenderScreen(),
-    ),  GoRoute(
+    ),
+//     GoRoute(
+//       path: AppRoutePath.addExpenseScreen.path,
+//       builder: (context, state) {
+//         final cateId = state.extra as String;
+//         final cateController = state.extra as TextEditingController;
+//
+//        return AddExpenseScreen(cateId: cateId,categoryController: cateController);
+// }
+//     ),
+    GoRoute(
       path: AppRoutePath.addExpenseScreen.path,
       builder: (context, state) {
-        final cateId = state.extra as String;
 
-       return AddExpenseScreen(cateId: cateId);
-}
+        final data = state.extra as List;
+
+        final cateId = data[0] as String;
+        final categoryName = data[1] as String;
+
+        final controller = TextEditingController(text: categoryName);
+
+        return AddExpenseScreen(
+          cateId: cateId,
+          categoryController: controller,
+        );
+      },
     ),
+
     GoRoute(
       path: AppRoutePath.categoriesDetailScreen.path,
       builder: (context, state) {
@@ -102,7 +128,26 @@ GoRouter appRoute = GoRouter(
         return CategoriesDetailScreen(category: categoryIndex);
       },
     ),
-
+    GoRoute(
+      path: AppRoutePath.addBalanceScreen.path,
+      builder: (context, state) => AddBalanceScreen(),
+    ),
+    GoRoute(
+      path: AppRoutePath.editProfileScreen.path,
+      builder: (context, state) => EditProfile(),
+    ),
+    GoRoute(
+      path: AppRoutePath.settingScreen.path,
+      builder: (context, state) => SettingScreen(),
+    ),
+    GoRoute(
+      path: AppRoutePath.notificationSettingScreen.path,
+      builder: (context, state) => NotificationSettingScreen(),
+    ),
+    GoRoute(
+      path: AppRoutePath.passwordSettingScreen.path,
+      builder: (context, state) => PasswordSettingScreen(),
+    ),
     ShellRoute(
       builder: (context, state, child) {
         return BottomNavigationBarWidget(child: child);

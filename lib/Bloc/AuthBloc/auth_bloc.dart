@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Enum/enum.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../AppRoute/app_route.dart';
 import '../../Network/Repository/repository.dart';
 import '../../SessionManage/shared_pref.dart';
 import '../../Utilites/GlobalWidgets/BiomatricService/biomatric_service.dart';
-import '../../Utilites/GlobalWidgets/Constant/user_uid.dart';
-import '../../Utilites/GlobalWidgets/FirebaseInstanceClass/firebase_instance_class.dart';
+  import '../../Utilites/GlobalWidgets/FirebaseInstanceClass/firebase_instance_class.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
@@ -22,6 +23,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginWithBiometricEvent>(loginWithBiometric);
     on<FetchUserEvent>(fetchData);
     on<LogoutEvent>(logoutBloc);
+    on<EditProfileEvent>(editProfile);
+    on<ChangePasswordEvent>(changePassword);
   }
 
 
@@ -39,8 +42,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 
       SharedPref.setUserUid(uid!);
-
-
       SharedPref.userIdAccessToken(idToken!);
 
     } catch (e) {
@@ -63,8 +64,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 
       emit(state.copyWith(registrationStatus: AuthStatus.success));
-    } catch (e) {
-      emit(state.copyWith(registrationStatus: AuthStatus.error));
+    } on Exception catch (e) {
+      emit(state.copyWith(
+        registrationStatus: AuthStatus.error,
+        changePasswordError: e.toString().replaceAll('Exception: ', ''),
+      ));
     }
   }
 
@@ -120,6 +124,74 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     }
     }
+  Future<void> editProfile(
+      EditProfileEvent event,emit) async {
+    emit(state.copyWith(editProfileStatus: EditProfileStatus.loading));
+
+    try {
+      await repository.updateUser(userModel: event.userModel);
+
+      emit(state.copyWith(
+        editProfileStatus: EditProfileStatus.success,
+        userModel: event.userModel,
+      ));
+
+    } catch (e) {
+      emit(state.copyWith(editProfileStatus: EditProfileStatus.error));
+    }
+  }
+  // Future<void> changePassword(
+  //     ChangePasswordEvent event, Emitter<AuthState> emit) async {
+  //
+  //   emit(state.copyWith(changePasswordStatus: ChangePasswordStatus.loading));
+  //
+  //   try {
+  //     final user = FirebaseInstanceClass.auth.currentUser;
+  //
+  //     await user!.reauthenticateWithCredential(
+  //       EmailAuthProvider.credential(
+  //         email: user.email!,
+  //         password: event.currentPassword,
+  //       ),
+  //     );
+  //
+  //     await user.updatePassword(event.newPassword);
+  //
+  //     emit(state.copyWith(changePasswordStatus: ChangePasswordStatus.success));
+  //
+  //   } catch (e) {
+  //     emit(state.copyWith(
+  //       changePasswordStatus: ChangePasswordStatus.error,
+  //     ));
+  //   }
+  // }
+  Future<void> changePassword(
+      ChangePasswordEvent event, Emitter<AuthState> emit) async {
+
+    emit(state.copyWith(
+      changePasswordStatus: ChangePasswordStatus.loading,
+    ));
+
+    try {
+      await repository.changePassword(
+        currentPassword: event.currentPassword,
+        newPassword: event.newPassword,
+      );
+
+      final userModel = await repository.getUserById();
+
+      emit(state.copyWith(
+        changePasswordStatus: ChangePasswordStatus.success,
+        changePasswordError: null,
+        userModel: userModel,
+      ));
+
+    } on Exception catch (e) {
+      emit(state.copyWith(
+        changePasswordStatus: ChangePasswordStatus.error,
+      ));
+    }
+  }
   }
 
 

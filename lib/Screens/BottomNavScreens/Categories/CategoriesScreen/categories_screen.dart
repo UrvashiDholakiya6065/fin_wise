@@ -2,12 +2,14 @@
 import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Network/Repository/repository.dart';
+import 'package:fin_wise/SessionManage/shared_pref.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Bloc/CategorieBloc/categorie_bloc.dart';
 import '../../../../Bloc/CategorieBloc/categorie_state.dart';
+import '../../../../Bloc/ExpenseBloc/expense_bloc.dart';
 import '../../../../Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import '../../../../Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
@@ -32,6 +34,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   void initState() {
     super.initState();
     context.read<CategorieBloc>().add(GetCategorieEvent());
+    context.read<ExpenseBloc>().add(GetBalanceEvent());
+
+
+
   }
 
   @override
@@ -44,7 +50,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
 
       body: CommonAppUi(
-        topWidget: BalanceSummeryWidget().balanceSummaryWidget(),
+        topWidget: BalanceSummeryWidget().balanceSummaryWidget(cateId: "1",storeBalanceInPref: false),
 
         bottomWidget: BlocBuilder<CategorieBloc, CategorieState>(
           builder: (context, state) {

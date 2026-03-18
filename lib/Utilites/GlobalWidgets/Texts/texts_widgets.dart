@@ -133,5 +133,23 @@ class TextsWidgets {
 
   static final String profile=    "Profile";
 
+///Edit Screen........................
+
+
+  static final String editProfile=    "Edit Profile";
+
+  ///Setting Screen........................................................
+
+  static final String settings=    "Settings";
+
+  ///Notification setting Screen....................................
+  static final String notificationSetting=    "Notification Settings";
+  static final String passwordSetting=    "Password Settings";
+  static final String deleteAccount=    "Delete Account";
+
+
+  ///password settings screen.................................................
+  // static final String passwordSetting=    "Password Settings";
+
 
 }

@@ -1,3 +1,5 @@
+import 'package:fin_wise/AppRoute/app_route.dart';
+import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Bloc/AuthBloc/auth_state.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileWidgets/dialog_box.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileWidgets/profile_widgets.dart';
@@ -83,17 +85,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                       SizedBox(height: 35),
 
-                      ProfileWidgets().profileTile(
-                        ImagesWidget.profileIconImg,
-                        "Edit Profile",
+                      GestureDetector(
+                        onTap: (){
+                          appRoute.push(AppRoutePath.editProfileScreen.path);
+                        },
+                        child: ProfileWidgets().profileTile(
+                          ImagesWidget.profileIconImg,
+                          "Edit Profile",
+                        ),
                       ),
                       ProfileWidgets().profileTile(
                         ImagesWidget.profileScreenSecuirityImg,
                         "Security",
                       ),
-                      ProfileWidgets().profileTile(
-                        ImagesWidget.profileScreenSettingImg,
-                        "Setting",
+                      GestureDetector(
+                        onTap: (){
+                          appRoute.push(AppRoutePath.settingScreen.path);
+                        },
+                        child: ProfileWidgets().profileTile(
+                          ImagesWidget.profileScreenSettingImg,
+                          "Setting",
+                        ),
                       ),
                       ProfileWidgets().profileTile(
                         ImagesWidget.profileScreenHelpImg,

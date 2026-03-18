@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fin_wise/Bloc/ExpenseBloc/expense_bloc.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Categories/CategoriesWidgets/categories_list.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Categories/CategoriesWidgets/categories_transaction_list.dart';
@@ -13,6 +15,7 @@ import 'package:intl/intl.dart';
 import '../../../../AppRoute/app_route.dart';
 import '../../../../AppRoute/app_route_path.dart';
 import '../../../../Model/categorie_model.dart';
+import '../../../../SessionManage/shared_pref.dart';
 import '../../../../Utilites/GlobalWidgets/Buttons/CustomButtons/button_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
@@ -34,9 +37,9 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
   DateTime selectedMonth = DateTime.now();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<ExpenseBloc>().add(GetExpenseByCategoryEvent(cateId: widget.category.cateId));
+    // context.read<ExpenseBloc>().add(GetBalanceEvent());
   }
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
           title: widget.category.categorieName
       ),
       body: CommonAppUi(
-        topWidget: BalanceSummeryWidget().balanceSummaryWidget(),
+        topWidget: BalanceSummeryWidget().balanceSummaryWidget(cateId: widget.category.cateId,storeBalanceInPref: true),
         bottomWidget: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
@@ -150,9 +153,10 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
                   child: ButtonWidgets.appButton(
                     text: "Add Expense",
                     onTap: () async {
+
                       final result = await appRoute.push(
                         AppRoutePath.addExpenseScreen.path,
-                        extra: widget.category.cateId,
+                        extra:[ widget.category.cateId,widget.category.categorieName]
                       );
 
                       if (result == true) {
@@ -160,6 +164,8 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
                           GetExpenseByCategoryEvent(cateId:  widget.category.cateId),
                         );
                       }
+                   final getBalance=   await SharedPref.getBalance() ?? 0;
+                      print("Get balance in cate detail::$getBalance");
                     },
                     backgroundColor: ColorsWidgets.mainAppColor,
                     height: 45,
