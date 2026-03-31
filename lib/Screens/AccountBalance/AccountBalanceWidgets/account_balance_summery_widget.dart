@@ -2,6 +2,7 @@ import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Screens/AccountBalance/AccountBalanceWidgets/expense_card_widget.dart';
 import 'package:fin_wise/Screens/AccountBalance/AccountBalanceWidgets/income_card_widget.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ import '../../../Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import '../../../Utilites/GlobalWidgets/ThemeHelper/indian_currency_format.dart';
 
 class AccountBalanceSummeryWidget {
-  Widget accountBalanceSummeryWidget() {
+  Widget accountBalanceSummeryWidget(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 14),
       child: GestureDetector(
@@ -38,7 +39,8 @@ class AccountBalanceSummeryWidget {
                             Image.asset(ImagesWidget.incomeImg, height: 12),
                             SizedBox(width: 4),
                             Text(
-                              TextsWidgets.totalBalance,
+                              AppLocalizations.of(context)?.translate("totalBalance")??"totalBalance",
+
                               style: FontsWidgets.poppins(
                                 fontWeight: FontWeight.w400,
                                 fontColor: ColorsWidgets.darkGreen,
@@ -48,7 +50,7 @@ class AccountBalanceSummeryWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          formatAmount(7783),
+                          formatAmount(7783,context),
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w700,
                             fontSize: 24,
@@ -68,7 +70,9 @@ class AccountBalanceSummeryWidget {
                             Image.asset(ImagesWidget.expenseImg, height: 12),
                             SizedBox(width: 4),
                             Text(
-                              TextsWidgets.totalExpense,
+
+                              AppLocalizations.of(context)?.translate("totalExpense")??"totalExpense",
+
                               style: FontsWidgets.poppins(
                                 fontWeight: FontWeight.w400,
                                 fontColor: ColorsWidgets.darkGreen,
@@ -78,7 +82,7 @@ class AccountBalanceSummeryWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          formatAmount(1187),
+                          formatAmount(1187,context),
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w600,
                             fontSize: 24,
@@ -132,7 +136,7 @@ class AccountBalanceSummeryWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 12),
                           child: Text(
-                              formatAmount(20000),
+                              formatAmount(20000,context),
                             style: FontsWidgets.poppins(
                               fontWeight: FontWeight.w500,
                               fontColor: ColorsWidgets.darkGreen,
@@ -153,9 +157,9 @@ class AccountBalanceSummeryWidget {
                       onTap: (){
                         appRoute.push(AppRoutePath.addBalanceScreen.path);
                       },
-                      child: IncomeCardWidget().incomeCardWidget()),
+                      child: IncomeCardWidget().incomeCardWidget(context)),
                     SizedBox(width: 8,),
-                    ExpenseCardWidget().expenseCardWidget()
+                    ExpenseCardWidget().expenseCardWidget(context)
                   ],
                 ),
                 SizedBox(height: 14,),
@@ -165,7 +169,8 @@ class AccountBalanceSummeryWidget {
                     Icon(Icons.check_box_outlined,size: 16,),
                     SizedBox(width: 8),
                     Text(
-                      TextsWidgets.expenseStatusMessage,
+
+                      AppLocalizations.of(context)?.translate("expenseStatusMessage")??"expenseStatusMessage",
                       style:FontsWidgets.poppins(
                         fontWeight: FontWeight.w400,
                         fontColor: ColorsWidgets.darkGreen,

@@ -5,6 +5,7 @@ import 'package:fin_wise/Screens/Notification/NotificationWidgets/notification_i
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Enum/enum.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppbar().commonAppBar(
-          title: TextsWidgets.notificationScreenTitle,
+
+          title:          AppLocalizations.of(context)?.translate("notificationScreenTitle")??"notificationScreenTitle",
+
           backArrow: true,
           centerTitle: true
       ),

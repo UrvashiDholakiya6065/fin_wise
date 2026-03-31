@@ -4,6 +4,7 @@ import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +12,7 @@ import '../../../Utilites/GlobalWidgets/Buttons/CustomButtons/button_widgets.dar
 import '../../../Utilites/GlobalWidgets/Buttons/ElevatedButton/elevated_buttons.dart';
 import '../../../Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import '../../../Utilites/GlobalWidgets/TextFields/text_fields.dart';
+import '../../../Utilites/GlobalWidgets/ThemeHelper/indian_currency_format.dart';
 import '../SearchWidgets/search_transaction_item.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -31,18 +33,45 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final List<Map<String, dynamic>> searchTransactionsList = [
+
+      {
+        "icon": ImagesWidget.searchScreenDinnerImg,
+        "title": "Dinner",
+        "timeDate": "18:27 - April 30",
+        "amount": formatAmount(-2600,context),
+        "isExpense": true
+      },
+    ];
+
+    List<String> categories = [
+      "Food",
+      "Transport",
+      "Medicine",
+      "Groceries",
+      "Rent",
+      "Gifts",
+      "Savings",
+      "Entertainment",
+    ];
     return Scaffold(
       appBar: CommonAppbar().commonAppBar(
         centerTitle: true,
         backArrow: true,
-        title: TextsWidgets.searchScreenTitle,
+
+
+        title: AppLocalizations.of(context)?.translate("searchScreenTitle")??"searchScreenTitle",
+
       ),
       body: CommonAppUi(
         topWidget: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: TextFields.commonTextFormField(
             controller: searchController,
-            hintText: TextsWidgets.searchScreenSearch,
+
+
+            hintText: AppLocalizations.of(context)?.translate("searchScreenSearch")??"searchScreenSearch",
             contentHorizontal: 20,
             contentVertical: 7,
             fillColor: ColorsWidgets.white,
@@ -57,8 +86,11 @@ class _SearchScreenState extends State<SearchScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFields.commonTextFormField(
-                  hintText: TextsWidgets.searchScreenHintText,
-                  labelText: TextsWidgets.searchScreenLableCategories,
+
+
+                  hintText: AppLocalizations.of(context)?.translate("searchScreenHintText")??"searchScreenHintText",
+                  labelText:  AppLocalizations.of(context)?.translate("searchScreenLableCategories")??"searchScreenLableCategories",
+
                   controller: categoriesController,
                   contentHorizontal: 20,
                   contentVertical: 10,
@@ -94,9 +126,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 SizedBox(height: 30),
                 TextFields.commonTextFormField(
                   readOnly: true,
-                  hintText: TextsWidgets.searchScreenHintTextDate,
-                  labelText: TextsWidgets.searchScreenLableDate,
-                  controller: dateController,
+
+                    hintText: AppLocalizations.of(context)?.translate("searchScreenHintTextDate")??"searchScreenHintTextDate",
+
+                    labelText:  AppLocalizations.of(context)?.translate("searchScreenLableDate")??"searchScreenLableDate",
+
+                    controller: dateController,
                   contentHorizontal: 20,
                   contentVertical: 10,
                   fillColor: ColorsWidgets.lightGreen,
@@ -150,7 +185,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 SizedBox(height: 30),
                 Text(
-                  TextsWidgets.searchScreenRadioReport,
+                  AppLocalizations.of(context)?.translate("searchScreenRadioReport")??"searchScreenRadioReport",
                   style: FontsWidgets.poppins(
                     fontWeight: FontWeight.w500,
                     fontColor: ColorsWidgets.darkGreen,
@@ -171,7 +206,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           },
                         ),
                         Text(
-                          TextsWidgets.searchScreenRadioIncome,
+                          AppLocalizations.of(context)?.translate("searchScreenRadioIncome")??"searchScreenRadioIncome",
+
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w400,
                             fontColor: ColorsWidgets.darkGreen,
@@ -195,7 +231,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           },
                         ),
                         Text(
-                          TextsWidgets.searchScreenRadioExpense,
+                          AppLocalizations.of(context)?.translate("searchScreenRadioExpense")??"searchScreenRadioExpense",
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w400,
                             fontColor: ColorsWidgets.darkGreen,
@@ -208,7 +244,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 SizedBox(height: 54,),
                 Center(
                   child: ButtonWidgets.appButton(
-                    text: TextsWidgets.searchScreenTitle,
+
+
+                    text: AppLocalizations.of(context)?.translate("searchScreenTitle")??"searchScreenTitle",
+
                     onTap: () {},
                     height: 36,
                     width: 169,

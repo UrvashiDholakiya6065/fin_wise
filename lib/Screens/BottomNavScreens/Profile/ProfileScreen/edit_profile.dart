@@ -1,5 +1,6 @@
 import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -110,12 +111,17 @@ class _EditProfileState extends State<EditProfile> {
                       
                               TextFields.commonTextFormField(
                                 controller: fullNameController,
-                                labelText: TextsWidgets.lableFullName,
-                                hintText: TextsWidgets.hintTextFullName,
+
+
+                                labelText:   AppLocalizations.of(context)?.translate("lableFullName")??"lableFullName",
+                                hintText: AppLocalizations.of(context)?.translate("hintTextFullName")??"hintTextFullName",
+
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return TextsWidgets.signupValidationFullName;
-                                  }
+
+                                  return AppLocalizations.of(context)?.translate("signupValidationFullName")??"signupValidationFullName";
+
+                                }
                       
                                   return null;
                                 },
@@ -130,11 +136,16 @@ class _EditProfileState extends State<EditProfile> {
                               TextFields.commonTextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 controller: emailController,
-                                labelText: TextsWidgets.lableEmail,
-                                hintText: TextsWidgets.hintTextEmail,
+
+                                labelText:                                 AppLocalizations.of(context)?.translate("lableEmail")??"lableEmail",
+
+                                hintText:                                 AppLocalizations.of(context)?.translate("hintTextEmail")??"hintTextEmail",
+
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return TextsWidgets.signupValidationEmail;
+
+                                  return AppLocalizations.of(context)?.translate("signupValidationEmail")??"signupValidationEmail";
+
                                   }
                                   if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
                                     return "Enter valid email";
@@ -152,12 +163,17 @@ class _EditProfileState extends State<EditProfile> {
                               TextFields.commonTextFormField(
                                 keyboardType: TextInputType.number,
                                 controller: mobileController,
-                                labelText: TextsWidgets.lableMobileNumber,
-                                hintText: TextsWidgets.hintTextMobileNumber,
+
+                                labelText:  AppLocalizations.of(context)?.translate("lableMobileNumber")??"lableMobileNumber",
+
+                                hintText:                                 AppLocalizations.of(context)?.translate("hintTextMobileNumber")??"hintTextMobileNumber",
+
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return TextsWidgets.signupValidationMobileNumber;
-                                  }
+
+                                  return  AppLocalizations.of(context)?.translate("signupValidationMobileNumber")??"signupValidationMobileNumber";
+
+                                }
                       
                                   return null;
                                 },
@@ -172,8 +188,11 @@ class _EditProfileState extends State<EditProfile> {
                               TextFields.commonTextFormField(
                                 readOnly: true,
                                 controller: dobController,
-                                labelText: TextsWidgets.lableDob,
-                                hintText: TextsWidgets.hintTextDob,
+
+                                labelText:   AppLocalizations.of(context)?.translate("lableDob")??"lableDob",
+
+                                hintText: AppLocalizations.of(context)?.translate("hintTextDob")??"hintTextDob",
+
                                 onTap: () async {
                                   FocusScope.of(context).unfocus();
                       
@@ -192,7 +211,10 @@ class _EditProfileState extends State<EditProfile> {
                                 },
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return TextsWidgets.signupValidationDob;
+
+
+                                  return                                     AppLocalizations.of(context)?.translate("signupValidationDob")??"signupValidationDob";
+
                                   }
                                   return null;
                                 },
@@ -229,7 +251,9 @@ class _EditProfileState extends State<EditProfile> {
                                   return Center(
                                     child: ButtonWidgets.appButton(
                                       isLoading: loading,
-                                      text: TextsWidgets.editProfile,
+
+                                      text:   AppLocalizations.of(context)?.translate("editProfile")??"editProfile",
+
                                       onTap: () {
                                         FocusScope.of(context).unfocus();
                                         if (_formKey.currentState!.validate()) {

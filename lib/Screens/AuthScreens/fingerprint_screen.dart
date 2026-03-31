@@ -2,6 +2,7 @@ import 'package:fin_wise/Bloc/AuthBloc/auth_bloc.dart';
 import 'package:fin_wise/Bloc/AuthBloc/auth_event.dart';
 import 'package:fin_wise/Bloc/AuthBloc/auth_state.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Buttons/TextButtons/text_buttons.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,7 +69,7 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
         children: [
           CommonAppUi(
             topWidget: Text(
-              TextsWidgets.securityFingerprint,
+              AppLocalizations.of(context)?.translate("securityFingerprint")??"securityFingerprint",
               style: FontsWidgets.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.w600,
@@ -85,7 +86,7 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
                   Image.asset(ImagesWidget.fingerPrint, height: 185),
                   SizedBox(height: 24),
                   Text(
-                    TextsWidgets.useFingerprintToAccess,
+                    AppLocalizations.of(context)?.translate("useFingerprintToAccess")??"useFingerprintToAccess",
                     style: FontsWidgets.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
@@ -94,7 +95,8 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
                   ),
                   SizedBox(height: 24),
                   Text(
-                    TextsWidgets.fingerprintDis,
+                    AppLocalizations.of(context)?.translate("fingerprintDis")??"fingerprintDis",
+
                     style: FontsWidgets.leagueSpartan(
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
@@ -148,7 +150,9 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
                     },
                     builder: (context, state) {
                       return ButtonWidgets.appButton(
-                        text: TextsWidgets.useTouchId,
+
+                        text: AppLocalizations.of(context)?.translate("useTouchId")??"useTouchId",
+
                         onTap: () {
                           context.read<AuthBloc>().add(
                               LoginWithBiometricEvent());
@@ -190,7 +194,9 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
 
             SizedBox(height: 24,),
           TextButtons.textButton(
-              text: TextsWidgets.preferUsePinCode,
+
+              text:AppLocalizations.of(context)?.translate("preferUsePinCode")??"preferUsePinCode",
+
               onTap: () {},
               textStyle: FontsWidgets.leagueSpartan(
                   fontColor: ColorsWidgets.darkGreen,

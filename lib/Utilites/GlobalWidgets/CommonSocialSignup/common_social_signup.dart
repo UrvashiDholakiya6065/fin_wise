@@ -1,26 +1,28 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
 import '../Colors/colors_widgets.dart';
 import '../Fonts/fonts_widgets.dart';
 import '../PngImages/images_widget.dart';
-import '../Texts/texts_widgets.dart';
+import '../Texts/language_controller.dart';
 
-Widget commonSocialSignup({
-  VoidCallback? onFacebookTap,
-  VoidCallback? onGoogleTap,
-  VoidCallback? onSignupTap,
-}) {
+Widget commonSocialSignup(
+    BuildContext context, {
+      VoidCallback? onFacebookTap,
+      VoidCallback? onGoogleTap,
+      VoidCallback? onSignupTap,
+    }) {
   return Column(
     children: [
 
       Text(
-        TextsWidgets.orSignUpWith,
+        AppLocalizations.of(context)?.translate("orSignUpWith") ?? "orSignUpWith",
         style: FontsWidgets.leagueSpartan(
           fontWeight: FontWeight.w300,
           fontColor: ColorsWidgets.darkGreen,
         ),
       ),
 
-       SizedBox(height: 18),
+      const SizedBox(height: 18),
 
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +34,7 @@ Widget commonSocialSignup({
               height: 32,
             ),
           ),
-           SizedBox(width: 12),
+          const SizedBox(width: 12),
           GestureDetector(
             onTap: onGoogleTap,
             child: Image.asset(
@@ -43,22 +45,22 @@ Widget commonSocialSignup({
         ],
       ),
 
-       SizedBox(height: 16),
+      const SizedBox(height: 16),
 
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            TextsWidgets.dontHaveAccount,
+            AppLocalizations.of(context)?.translate("dontHaveAccount") ?? "dontHaveAccount",
             style: FontsWidgets.leagueSpartan(
               fontWeight: FontWeight.w300,
             ),
           ),
-           SizedBox(width: 4),
+          const SizedBox(width: 4),
           GestureDetector(
             onTap: onSignupTap,
             child: Text(
-              TextsWidgets.signup,
+              AppLocalizations.of(context)?.translate("signup") ?? "signup",
               style: FontsWidgets.leagueSpartan(
                 fontWeight: FontWeight.w300,
                 fontColor: ColorsWidgets.blue,

@@ -50,6 +50,8 @@ dependencies:
   local_auth: ^3.0.1
   firebase_messaging: ^16.1.2
   flutter_local_notifications: ^21.0.0
+  flutter_localization:
+  http:
 
 
 dev_dependencies:
@@ -72,12 +74,14 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+  generate: true
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/images/
      - assets/onboarding_Images/
+     - assets/languages/
 #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

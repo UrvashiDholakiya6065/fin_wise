@@ -1,13 +1,13 @@
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/PngImages/images_widget.dart';
-import '../../../../Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/ThemeHelper/indian_currency_format.dart';
 
 class SavingsGoalsWidget {
-  Widget savingsGoalsWidget() {
+  Widget savingsGoalsWidget(context) {
     return Container(
       height: 140,
       padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -34,7 +34,8 @@ class SavingsGoalsWidget {
               ),
               SizedBox(height: 6),
               Text(
-                TextsWidgets.savingsOnGoals,
+                AppLocalizations.of(context)?.translate("savingsOnGoals")??"savingsOnGoals",
+
                 textAlign: TextAlign.center,
                 style: FontsWidgets.poppins(
                   fontWeight: FontWeight.w500,
@@ -61,7 +62,8 @@ class SavingsGoalsWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          TextsWidgets.revenueLastWeek,
+                          AppLocalizations.of(context)?.translate("revenueLastWeek")??"revenueLastWeek",
+
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
@@ -70,7 +72,7 @@ class SavingsGoalsWidget {
                         ),
                         SizedBox(height: 2),
                         Text(
-                          formatAmount(4000),
+                          formatAmount(4000,context),
                           style: FontsWidgets.inter(
                             fontWeight: FontWeight.w600,
                             fontColor: ColorsWidgets.darkGreen,
@@ -95,7 +97,8 @@ class SavingsGoalsWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          TextsWidgets.foodLastWeek,
+                          AppLocalizations.of(context)?.translate("foodLastWeek")??"foodLastWeek",
+
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w400,
                             fontColor: ColorsWidgets.darkGreen,
@@ -103,7 +106,7 @@ class SavingsGoalsWidget {
                         ),
                         SizedBox(height: 2),
                         Text(
-                          formatAmount(-100),
+                          formatAmount(-100,context),
                           style: FontsWidgets.inter(
                             fontWeight: FontWeight.w700,
                             fontColor: ColorsWidgets.blue,

@@ -3,6 +3,7 @@ import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -67,7 +68,9 @@ class BarChartSample2State extends State<BarChartSample2> {
             Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:[
-                Text(TextsWidgets.quicklyAnalysisScreenChartAprilExpenses,style: FontsWidgets.poppins(
+
+                Text( AppLocalizations.of(context)?.translate("quicklyAnalysisScreenChartAprilExpenses")??"quicklyAnalysisScreenChartAprilExpenses",
+          style: FontsWidgets.poppins(
                   fontColor: ColorsWidgets.darkGreen,
                   fontWeight: FontWeight.w500
                 ),),

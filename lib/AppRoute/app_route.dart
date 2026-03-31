@@ -36,7 +36,9 @@ GoRouter appRoute = GoRouter(
   routes: [
     GoRoute(
       path: AppRoutePath.splashScreen.path,
-      builder: (context, state) => SplashScreen(),
+      builder: (context, state) => SplashScreen(
+
+      ),
     ),
     GoRoute(
       path: AppRoutePath.launchScreen.path,
@@ -72,7 +74,7 @@ GoRouter appRoute = GoRouter(
     ),
     GoRoute(
       path: AppRoutePath.fingerprintScreen.path,
-      builder: (context, state) =>FingerprintScreen()
+      builder: (context, state) => FingerprintScreen(),
     ),
     GoRoute(
       path: AppRoutePath.notificationScreen.path,
@@ -94,19 +96,18 @@ GoRouter appRoute = GoRouter(
       path: AppRoutePath.calenderScreen.path,
       builder: (context, state) => CalenderScreen(),
     ),
-//     GoRoute(
-//       path: AppRoutePath.addExpenseScreen.path,
-//       builder: (context, state) {
-//         final cateId = state.extra as String;
-//         final cateController = state.extra as TextEditingController;
-//
-//        return AddExpenseScreen(cateId: cateId,categoryController: cateController);
-// }
-//     ),
+    //     GoRoute(
+    //       path: AppRoutePath.addExpenseScreen.path,
+    //       builder: (context, state) {
+    //         final cateId = state.extra as String;
+    //         final cateController = state.extra as TextEditingController;
+    //
+    //        return AddExpenseScreen(cateId: cateId,categoryController: cateController);
+    // }
+    //     ),
     GoRoute(
       path: AppRoutePath.addExpenseScreen.path,
       builder: (context, state) {
-
         final data = state.extra as List;
 
         final cateId = data[0] as String;
@@ -114,10 +115,7 @@ GoRouter appRoute = GoRouter(
 
         final controller = TextEditingController(text: categoryName);
 
-        return AddExpenseScreen(
-          cateId: cateId,
-          categoryController: controller,
-        );
+        return AddExpenseScreen(cateId: cateId, categoryController: controller);
       },
     ),
 

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fin_wise/Bloc/CategorieBloc/categorie_bloc.dart';
 import 'package:fin_wise/Bloc/CategorieBloc/categorie_state.dart';
 import 'package:fin_wise/Bloc/ExpenseBloc/expense_bloc.dart';
-import 'package:fin_wise/Model/add_balance_model.dart';
 import 'package:fin_wise/Model/expense_model.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Categories/CategoriesWidgets/methods.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
@@ -24,6 +23,7 @@ import '../../../../Network/Services/notification_service.dart';
 import '../../../../SessionManage/shared_pref.dart';
 import '../../../../Utilites/GlobalWidgets/Buttons/CustomButtons/button_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import '../../../../Utilites/GlobalWidgets/Texts/language_controller.dart';
 
 class AddExpenseScreen extends StatefulWidget {
   final String cateId;
@@ -140,7 +140,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   keyboardType: TextInputType.number,
                   controller: amountController,
                   labelText: "Amount",
-                  hintText: formatAmount(2600),
+                  hintText: formatAmount(2600,context),
                   onTap: () async {},
                   validator: (value) {
                     if (value == null || value.isEmpty) {

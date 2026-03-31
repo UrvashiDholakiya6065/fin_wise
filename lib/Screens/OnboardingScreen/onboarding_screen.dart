@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fin_wise/SessionManage/shared_pref.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../AppRoute/app_route.dart';
@@ -39,7 +40,8 @@ class OnboardingScreen extends StatelessWidget {
                 items: [
                   CommonAppUi(
                     topWidget: Text(
-                      TextsWidgets.onBoardingWelcome1,
+
+                      AppLocalizations.of(context)?.translate("onBoardingWelcome1")??"onBoardingWelcome1",
                       textAlign: TextAlign.center,
                       style: FontsWidgets.poppins(
                         fontColor: ColorsWidgets.darkGreen,
@@ -62,7 +64,9 @@ class OnboardingScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 40),
                         ElevatedButtons.elevatedButton(
-                          text: TextsWidgets.getStarted,
+
+                          text: AppLocalizations.of(context)?.translate("getStarted")??"getStarted",
+
                           onTap: () {
                             SharedPref.setOnboarding(true);
                             controller.nextPage();
@@ -81,7 +85,8 @@ class OnboardingScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(2.0),
                     child: CommonAppUi(
                       topWidget: Text(
-                        TextsWidgets.onBoardingWelcome2,
+
+                        AppLocalizations.of(context)?.translate("onBoardingWelcome2")??"onBoardingWelcome2",
                         textAlign: TextAlign.center,
                         style: FontsWidgets.poppins(
                           fontColor: ColorsWidgets.darkGreen,
@@ -104,7 +109,9 @@ class OnboardingScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 40),
                           ElevatedButtons.elevatedButton(
-                            text: TextsWidgets.letsStart,
+
+                            text: AppLocalizations.of(context)?.translate("letsStart")??"letsStart",
+
                             onTap: () {
                               appRoute.go(AppRoutePath.launchScreen.path);
                             },

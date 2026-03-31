@@ -3,6 +3,7 @@ import 'package:fin_wise/Bloc/AuthBloc/auth_bloc.dart';
 import 'package:fin_wise/Bloc/AuthBloc/auth_state.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,10 @@ class _PasswordSettingScreenState extends State<PasswordSettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppbar().commonAppBar(
-        title: TextsWidgets.passwordSetting,
+        title:
+            AppLocalizations.of(context)?.translate("passwordSetting") ??
+            "passwordSetting",
+
         centerTitle: true,
         backArrow: true,
       ),
@@ -45,7 +49,7 @@ class _PasswordSettingScreenState extends State<PasswordSettingScreen> {
         bottomWidget: Form(
           key: _formKey,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 34),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 34),
             child: Column(
               children: [
                 TextFields.commonTextFormField(
@@ -59,13 +63,16 @@ class _PasswordSettingScreenState extends State<PasswordSettingScreen> {
                         isCurrentPassword = !isCurrentPassword;
                       });
                     },
-                    child:  isCurrentPassword ?Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Image.asset(ImagesWidget.eyeOff,   height: 20,
-                        width: 20,),
-                    ):Icon(
-                     Icons.visibility,
-                    ),
+                    child: isCurrentPassword
+                        ? Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Image.asset(
+                              ImagesWidget.eyeOff,
+                              height: 20,
+                              width: 20,
+                            ),
+                          )
+                        : Icon(Icons.visibility),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -96,13 +103,16 @@ class _PasswordSettingScreenState extends State<PasswordSettingScreen> {
                         isNewPassword = !isNewPassword;
                       });
                     },
-                    child:isNewPassword?Padding(
-                      padding: const EdgeInsets.all(12),
-                      child:Image.asset(ImagesWidget.eyeOff,   height: 20,
-                        width: 20,)):
-                    Icon(
-                       Icons.visibility,
-                    ),
+                    child: isNewPassword
+                        ? Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Image.asset(
+                              ImagesWidget.eyeOff,
+                              height: 20,
+                              width: 20,
+                            ),
+                          )
+                        : Icon(Icons.visibility),
                   ),
 
                   validator: (value) {
@@ -139,12 +149,16 @@ class _PasswordSettingScreenState extends State<PasswordSettingScreen> {
                         isConfirmPassword = !isConfirmPassword;
                       });
                     },
-                    child: isConfirmPassword? Padding(
-                        padding: const EdgeInsets.all(12),
-                        child:Image.asset(ImagesWidget.eyeOff,   height: 20,
-                          width: 20,)):Icon(
-                   Icons.visibility,
-                    ),
+                    child: isConfirmPassword
+                        ? Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Image.asset(
+                              ImagesWidget.eyeOff,
+                              height: 20,
+                              width: 20,
+                            ),
+                          )
+                        : Icon(Icons.visibility),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -184,7 +198,9 @@ class _PasswordSettingScreenState extends State<PasswordSettingScreen> {
                     }
                   },
                   builder: (context, state) {
-                    final loading=state.changePasswordStatus==ChangePasswordStatus.loading;
+                    final loading =
+                        state.changePasswordStatus ==
+                        ChangePasswordStatus.loading;
                     return Center(
                       child: ButtonWidgets.appButton(
                         isLoading: loading,

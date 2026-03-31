@@ -4,6 +4,7 @@ import 'package:fin_wise/Bloc/ExpenseBloc/expense_bloc.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +73,8 @@ class BalanceSummeryWidget {
                               children: [
                                 Image.asset(ImagesWidget.incomeImg, height: 12),
                                 SizedBox(width: 4),
-                                Text(
-                                  TextsWidgets.totalBalance,
+                                Text(   AppLocalizations.of(context)?.translate("totalBalance")??"totalBalance",
+
                                   style: FontsWidgets.poppins(
                                     fontWeight: FontWeight.w400,
                                     fontColor: ColorsWidgets.darkGreen,
@@ -83,7 +84,7 @@ class BalanceSummeryWidget {
                             ),
                             SizedBox(height: 5),
                             Text(
-                              formatAmount(remainingBalance),
+                              formatAmount(remainingBalance,context),
                               style: FontsWidgets.poppins(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 24,
@@ -110,7 +111,8 @@ class BalanceSummeryWidget {
                                 ),
                                 SizedBox(width: 4),
                                 Text(
-                                  TextsWidgets.totalExpense,
+                                  AppLocalizations.of(context)?.translate("totalExpense")??"totalExpense",
+
                                   style: FontsWidgets.poppins(
                                     fontWeight: FontWeight.w400,
                                     fontColor: ColorsWidgets.darkGreen,
@@ -120,7 +122,7 @@ class BalanceSummeryWidget {
                             ),
                             SizedBox(height: 5),
                             Text(
-                              formatAmount(totalExpense),
+                              formatAmount(totalExpense,context),
                               style: FontsWidgets.poppins(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 24,
@@ -175,7 +177,7 @@ class BalanceSummeryWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(right: 12),
                               child: Text(
-                                formatAmount(totalBalance),
+                                formatAmount(totalBalance,context),
                                 style: FontsWidgets.poppins(
                                   fontWeight: FontWeight.w500,
                                   fontColor: ColorsWidgets.darkGreen,
@@ -195,7 +197,8 @@ class BalanceSummeryWidget {
                         Icon(Icons.check_box_outlined, size: 16),
                         SizedBox(width: 8),
                         Text(
-                          TextsWidgets.expenseStatusMessage,
+                          AppLocalizations.of(context)?.translate("expenseStatusMessage")??"expenseStatusMessage",
+
                           style: TextStyle(fontSize: 14),
                         ),
                       ],

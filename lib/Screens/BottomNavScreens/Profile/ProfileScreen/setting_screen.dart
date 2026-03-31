@@ -2,6 +2,7 @@ import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,9 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppbar().commonAppBar(
-        title: TextsWidgets.settings,
+
+          title:           AppLocalizations.of(context)?.translate("settings")??"settings",
+
         centerTitle: true,
         backArrow: true,
       ),
@@ -26,8 +29,12 @@ class SettingScreen extends StatelessWidget {
             children: [
               SettingItem(
                 icon: Icons.notifications_none,
-                title: TextsWidgets.notificationSetting,
-                onTap: (){
+
+
+
+              title:              AppLocalizations.of(context)?.translate("notificationSetting")??"notificationSetting",
+
+              onTap: (){
                   appRoute.push(AppRoutePath.notificationSettingScreen.path);
                 },
               ),
@@ -36,9 +43,12 @@ class SettingScreen extends StatelessWidget {
                   onTap: (){
                     appRoute.push(AppRoutePath.passwordSettingScreen.path);
                   },
-                  child: SettingItem(icon: Icons.key, title: TextsWidgets.passwordSetting)),
+                  child: SettingItem(icon: Icons.key, title:                  AppLocalizations.of(context)?.translate("passwordSetting")??"passwordSetting",
+                  )),
               SizedBox(height: 12),
-              SettingItem(icon: Icons.person_outline, title: TextsWidgets.deleteAccount),
+
+              SettingItem(icon: Icons.person_outline, title:              AppLocalizations.of(context)?.translate("deleteAccount")??"deleteAccount",
+              ),
             ],
           ),
         ),

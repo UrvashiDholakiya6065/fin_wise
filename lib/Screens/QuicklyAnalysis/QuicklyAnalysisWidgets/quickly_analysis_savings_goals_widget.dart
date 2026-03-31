@@ -1,3 +1,4 @@
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ import '../../../Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import '../../../Utilites/GlobalWidgets/ThemeHelper/indian_currency_format.dart';
 
 class QuicklyAnalysisSavingsGoalsWidget {
-  Widget quicklyAnalysisSavingsGoalsWidget() {
+  Widget quicklyAnalysisSavingsGoalsWidget(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Container(
@@ -39,7 +40,7 @@ class QuicklyAnalysisSavingsGoalsWidget {
                 ),
                 SizedBox(height: 6),
                 Text(
-                  TextsWidgets.savingsOnGoals,
+                  AppLocalizations.of(context)?.translate("savingsOnGoals")??"savingsOnGoals",
                   textAlign: TextAlign.center,
                   style: FontsWidgets.poppins(
                     fontWeight: FontWeight.w500,
@@ -69,7 +70,8 @@ class QuicklyAnalysisSavingsGoalsWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              TextsWidgets.revenueLastWeek,
+                              AppLocalizations.of(context)?.translate("revenueLastWeek")??"revenueLastWeek",
+
                               style: FontsWidgets.poppins(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,
@@ -78,7 +80,7 @@ class QuicklyAnalysisSavingsGoalsWidget {
                             ),
                             SizedBox(height: 2),
                             Text(
-                              formatAmount(4000),
+                              formatAmount(4000,context),
                               style: FontsWidgets.inter(
                                 fontWeight: FontWeight.w600,
                                 fontColor: ColorsWidgets.darkGreen,
@@ -106,7 +108,7 @@ class QuicklyAnalysisSavingsGoalsWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              TextsWidgets.foodLastWeek,
+                              AppLocalizations.of(context)?.translate("foodLastWeek")??"foodLastWeek",
                               style: FontsWidgets.poppins(
                                 fontWeight: FontWeight.w400,
                                 fontColor: ColorsWidgets.darkGreen,
@@ -114,7 +116,7 @@ class QuicklyAnalysisSavingsGoalsWidget {
                             ),
                             SizedBox(height: 2),
                             Text(
-                              formatAmount(-100),
+                              formatAmount(-100,context),
                               style: FontsWidgets.inter(
                                 fontWeight: FontWeight.w700,
                                 fontColor: ColorsWidgets.blue,

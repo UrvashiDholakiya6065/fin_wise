@@ -2,6 +2,7 @@ import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/TextFields/text_fields.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,21 +21,17 @@ class NewPasswordScreen extends StatefulWidget {
 
 class _NewPasswordScreenState extends State<NewPasswordScreen> {
   TextEditingController passwordController = TextEditingController();
-
   TextEditingController confirmPasswordController = TextEditingController();
-
    bool isPassword = true;
-
    bool isConfirmPassword = true;
   final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           CommonAppUi(topWidget: Text(
-            TextsWidgets.newPassword,
+            AppLocalizations.of(context)?.translate("newPassword")??"newPassword",
             style: FontsWidgets.poppins(
               fontSize: 28,
               fontWeight: FontWeight.w600,
@@ -48,12 +45,17 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   SizedBox(height: 42,),
                   TextFields.commonTextFormField(controller: passwordController,
                     keyboardType: TextInputType.emailAddress,
-                    labelText: TextsWidgets.newPassword,
-                    hintText: TextsWidgets.hintTextPassword,
+
+                    labelText: AppLocalizations.of(context)?.translate("newPassword")??"newPassword",
+
+                    hintText: AppLocalizations.of(context)?.translate("hintTextPassword")??"hintTextPassword",
+
                     obscureText: isPassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return TextsWidgets.newValidationPassword;
+
+                        return  AppLocalizations.of(context)?.translate("newValidationPassword")??"newValidationPassword"
+                      ;
                       }
                       if (value.length < 6) {
                         return "Password must be 6 characters";
@@ -65,6 +67,10 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                         setState(() {
                           isPassword = !isPassword;
                         });
+
+                        isConfirmPassword = true;
+
+
                       },
                       child: isPassword
                           ? Padding(
@@ -82,11 +88,16 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   SizedBox(height: 12,),
                   TextFields.commonTextFormField(controller: confirmPasswordController,
                     keyboardType: TextInputType.emailAddress,
-                    labelText: TextsWidgets.confirmNewPassword,
-                    hintText: TextsWidgets.hintTextPassword,
+
+                    labelText: AppLocalizations.of(context)?.translate("confirmNewPassword")??"confirmNewPassword",
+
+                    hintText: AppLocalizations.of(context)?.translate("hintTextPassword")??"hintTextPassword",
+
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return TextsWidgets.newValidationConfirmPassword;
+
+                      return AppLocalizations.of(context)?.translate("newValidationConfirmPassword")??"newValidationConfirmPassword";
+
                       }
                       if (value.length < 6) {
                         return "Password must be 6 characters";
@@ -117,7 +128,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   SizedBox(height: 120,),
                   Center(
                     child: ButtonWidgets.appButton(
-                      text: TextsWidgets.newChangePassword,
+
+                      text:  AppLocalizations.of(context)?.translate("newChangePassword")??"newChangePassword",
+
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         if (_formKey.currentState!.validate()) {

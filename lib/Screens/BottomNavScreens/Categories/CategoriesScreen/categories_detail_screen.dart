@@ -21,6 +21,7 @@ import '../../../../Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/MediaQuery/media_query.dart';
 import '../../../../Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import '../../../../Utilites/GlobalWidgets/Texts/language_controller.dart';
 import '../../../../Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import '../CategoriesWidgets/categories_widgets.dart';
 
@@ -136,7 +137,7 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
                                 icon: ImagesWidget.food,
                                 title: item.expenseTitle,
                                 timeDate: item.date,
-                                amount: formatAmount(double.parse(item.amount)),
+                                amount: formatAmount(double.parse(item.amount),context),
                                 isExpense: true,
                                 context: context,
                               ),

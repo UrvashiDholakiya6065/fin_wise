@@ -7,10 +7,15 @@ import '../../../../Bloc/PeriodBloc/period_event.dart';
 import '../../../../Bloc/PeriodBloc/period_state.dart';
 import '../../../../Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import '../../../../Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
+import '../../../../Utilites/GlobalWidgets/Texts/language_controller.dart';
 
 class PeriodSelectorWidget {
-  Widget periodSelectorWidget() {
-    List periods = ["Daily", "Weekly", "Monthly"];
+  Widget periodSelectorWidget(context) {
+    List periods = [
+      AppLocalizations.of(context)?.translate("Daily")??"Daily",
+      AppLocalizations.of(context)?.translate("Weekly")??"Weekly",
+      AppLocalizations.of(context)?.translate("Monthly")??"Monthly",
+    ];
 
     return BlocBuilder<PeriodBloc, PeriodState>(
       builder: (context, state) {

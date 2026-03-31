@@ -1,4 +1,5 @@
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -32,7 +33,8 @@ class OtpScreen extends StatelessWidget {
       body: Stack(
         children: [
           CommonAppUi(topWidget: Text(
-      TextsWidgets.securityPin,
+            AppLocalizations.of(context)?.translate("securityPin")??"securityPin",
+
         style: FontsWidgets.poppins(
           fontSize: 28,
           fontWeight: FontWeight.w600,
@@ -42,7 +44,9 @@ class OtpScreen extends StatelessWidget {
         child: Column(
               children: [
                 SizedBox(height: 42,),
-                Text(TextsWidgets.enterSecurityPin,style: FontsWidgets.poppins(
+
+                Text(                AppLocalizations.of(context)?.translate("enterSecurityPin")??"enterSecurityPin",
+    style: FontsWidgets.poppins(
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
                     fontColor: ColorsWidgets.darkGreen
@@ -62,7 +66,9 @@ class OtpScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 88,),
                 ButtonWidgets.appButton(
-                  text: TextsWidgets.otpAcceptButton,
+
+                  text: AppLocalizations.of(context)?.translate("otpAcceptButton")??"otpAcceptButton",
+
                   onTap: () {
                     FocusScope.of(context).unfocus();
                   },
@@ -75,7 +81,9 @@ class OtpScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 18,),
                 ButtonWidgets.appButton(
-                  text: TextsWidgets.otpSendAgainButton,
+
+                  text:    AppLocalizations.of(context)?.translate("otpSendAgainButton")??"otpSendAgainButton",
+
                   onTap: () {
                     FocusScope.of(context).unfocus();
                   },
@@ -88,6 +96,7 @@ class OtpScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 60,),
                 commonSocialSignup(
+                  context,
                   onSignupTap: (){},
                   onFacebookTap: (){},
                   onGoogleTap: (){},

@@ -50,7 +50,15 @@ class CommonAppbar {
         ],
       ),
       actions: [
-        notificationWidget()
+        Row(
+          children: [
+            notificationWidget(),
+            IconButton(onPressed: (){
+              appRoute.push("/SuccessfullyPasswordScreen");
+            }, icon: Icon(Icons.nature_outlined))
+
+          ],
+        )
       ],
     );
   }

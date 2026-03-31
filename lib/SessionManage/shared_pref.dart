@@ -100,4 +100,13 @@ class SharedPref {
     print("get reaming in sharepre $value");
     return value;
   }
+  static Future<void> setLanguage(String lang) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('app_language', lang);
+    print("Saved Language ::: $lang");
+  }
+  static Future<String> getLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('app_language') ?? 'english';
+  }
 }

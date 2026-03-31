@@ -1,6 +1,7 @@
 import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,6 @@ import '../../Utilites/GlobalWidgets/Buttons/TextButtons/text_buttons.dart';
 import '../../Utilites/GlobalWidgets/Buttons/CustomButtons/button_widgets.dart';
 import '../../Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import '../../Utilites/GlobalWidgets/PngImages/images_widget.dart';
-import '../../Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 
 class LaunchScreen extends StatelessWidget {
   const LaunchScreen({super.key});
@@ -31,7 +31,7 @@ class LaunchScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              TextsWidgets.fineWise,
+              AppLocalizations.of(context)?.translate("fineWise")??"fineWise",
               style: FontsWidgets.poppins(
                   fontColor: ColorsWidgets.mainAppColor,
                 fontSize: 50,
@@ -41,7 +41,7 @@ class LaunchScreen extends StatelessWidget {
             ),
             SizedBox(height: 3),
             Text(
-              TextsWidgets.text,
+              AppLocalizations.of(context)?.translate("text")??"text",
               style: FontsWidgets.leagueSpartan(
                   fontColor: ColorsWidgets.darkGrey,
                 fontSize: 14,
@@ -51,8 +51,10 @@ class LaunchScreen extends StatelessWidget {
             ),
             SizedBox(height: 42,),
             ButtonWidgets.appButton(
-              text: TextsWidgets.login,
-              onTap: () {
+
+                text:                AppLocalizations.of(context)?.translate("login")??"login",
+
+                onTap: () {
                 appRoute.go(AppRoutePath.loginScreen.path);
               },
               backgroundColor: ColorsWidgets.mainAppColor,
@@ -64,7 +66,9 @@ class LaunchScreen extends StatelessWidget {
             ),
             SizedBox(height: 12,),
             ButtonWidgets.appButton(
-              text:  TextsWidgets.signup,
+
+
+                text:   AppLocalizations.of(context)?.translate("signup")??"signup",
               onTap: () {
                 appRoute.push(AppRoutePath.signupScreen.path);
 
@@ -77,7 +81,8 @@ class LaunchScreen extends StatelessWidget {
               fontWeight: FontWeight.w600
             ),
             SizedBox(height: 12,),
-            TextButtons.textButton(text: TextsWidgets.forgotPassword, onTap: (){
+
+            TextButtons.textButton(text:AppLocalizations.of(context)?.translate("forgotPassword")??"forgotPassword", onTap: (){
               appRoute.push(AppRoutePath.forgotPasswordScreen.path);
             },textStyle:  FontsWidgets.leagueSpartan(
               fontWeight: FontWeight.w600,

@@ -1,13 +1,14 @@
 import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../Utilites/GlobalWidgets/ThemeHelper/indian_currency_format.dart';
 
 class IncomeCardWidget {
-  Widget incomeCardWidget(){
+  Widget incomeCardWidget(context){
     return Container(
       height: 100,
       width: 150,
@@ -21,12 +22,13 @@ class IncomeCardWidget {
         children: [
           Image.asset(ImagesWidget.incomeImg,height: 25,color: ColorsWidgets.mainAppColor,),
           SizedBox(height: 3,),
-          Text(TextsWidgets.accountBalanceScreenIncome,style: FontsWidgets.poppins(
+          Text(          AppLocalizations.of(context)?.translate("accountBalanceScreenIncome")??"accountBalanceScreenIncome",
+            style: FontsWidgets.poppins(
             fontWeight: FontWeight.w500,
             fontColor: ColorsWidgets.darkGreen
           ),),
           SizedBox(height: 3,),
-          Text(                        formatAmount(4000),
+          Text(  formatAmount(4000,context),
               style: FontsWidgets.poppins(
               fontWeight: FontWeight.w600,
               fontColor: ColorsWidgets.darkGreen,

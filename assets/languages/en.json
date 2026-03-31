@@ -1,0 +1,149 @@
+
+
+  {
+    "fineWise": "FinWise",
+    "forgotPassword": "Forgot Password?",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "text": "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod.",
+    "onBoardingWelcome1": "Welcome To\nExpense Manager",
+    "onBoardingWelcome2": "Are You Ready To\nTake Control Of\nYour Finances?",
+    "getStarted": "Get Started ➜",
+    "letsStart": "Let's Start ➜",
+    "welcome": "Welcome",
+    "Salary": "Salary",
+    "Groceries": "Groceries",
+    "Rent": "Rent",
+    "Edit Profile": "Edit Profile",
+    "Security": "Security",
+    "Setting": "Setting",
+    "Help": "Help",
+    "Logout": "Logout",
+
+    "18:27 - April 30": "18:27 - April 30",
+    "17:00 - April 24": "17:00 - April 24",
+    "8:30 - April 15": "8:30 - April 15",
+
+"Pantry": "Pantry",
+
+
+
+
+
+    "userNameOrEmail": "Username or Email",
+    "hintTextEmail": "example@example.com",
+    "password": "Password",
+    "hintTextPassword": "●●●●●●●●",
+
+    "use": "Use",
+    "fingerprint": "Fingerprint",
+    "toAccess": "to Access",
+    "orSignUpWith": "or sign up with",
+
+    "dontHaveAccount": "Don’t have an account?",
+    "createAccount": "Create Account",
+    "Daily": "Daily",
+    "Weekly": "Weekly",
+    "Monthly": "Monthly",
+    "labelFullName": "Full name",
+    "hintTextFullName": "Aman Panchal",
+    "labelEmail": "Email",
+    "labelMobileNumber": "Mobile Number",
+    "hintTextMobileNumber": "+91 6736376746",
+    "labelDob": "Date of birth",
+    "hintTextDob": "DD / MM / YYYY",
+    "labelConfirmPassword": "Confirm Password",
+    "hintTextConfirmPassword": "●●●●●●●●",
+
+    "signupDis": "By continuing, you agree to",
+    "signupTerms": "Terms of Use",
+    "signupAnd": "and",
+    "signupPrivacyPolicy": "Privacy Policy.",
+    "alreadyHaveAnAccount": "Already have an account?",
+
+    "loginValidationEmail": "Please enter email",
+    "loginValidationPassword": "Pleas e enter password",
+    "signupValidationFullName": "Please enter full name",
+    "signupValidationEmail": "Please enter email",
+    "signupValidationMobileNumber": "Please enter mobile number",
+    "signupValidationDob": "Please select date of birth",
+    "signupValidationPassword": "Please enter password",
+    "signupValidationConfirmPassword": "Please enter confirm password",
+
+    "forgotPass": "Forgot Password",
+    "resetPassword": "Reset Password?",
+    "forgotDis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "forgotEmail": "Enter Email Address",
+    "forgotHintTextEmail": "example@example.com",
+    "forgotValidationEmail": "Please enter email",
+    "forgotButtonNextStep": "Next Step",
+
+    "securityPin": "Security Pin",
+    "enterSecurityPin": "Enter Security Pin",
+    "otpAcceptButton": "Accept",
+    "otpSendAgainButton": "Send Again",
+
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "newValidationConfirmPassword": "Please enter confirm password",
+    "newValidationPassword": "Please enter password",
+    "newChangePassword": "Change Password",
+    "successfullyChangePassword": "Password Has Been\nChanged Successfully",
+
+    "securityFingerprint": "Security Fingerprint",
+    "useFingerprintToAccess": "Use Fingerprint to Access",
+    "useTouchId": "Use Touch ID",
+    "preferUsePinCode": "Or prefer to use pin code?",
+
+    "hi": "Hi",
+    "welcomeBack": "Welcome Back",
+    "fingerprintDis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+
+    "goodMorning": "Good Morning",
+    "totalBalance": "Total Balance",
+    "totalBalanceValue": "7783",
+    "totalExpense": "Total Expense",
+    "totalExpenseValue": "- $1,187.40",
+    "expenseStatusMessage": "30% Of Your Expenses, Looks Good.",
+
+    "savingsOnGoals": "Savings\nOn Goals",
+    "revenueLastWeek": "Revenue Last Week",
+    "revenueLastWeekValue": "$4,000.00",
+    "foodLastWeek": "Food Last Week",
+    "foodLastWeekValue": "-$100.00",
+
+    "notificationScreenTitle": "Notification",
+
+    "accountBalanceScreenTitle": "Account Balance",
+    "accountBalanceScreenIncome": "Income",
+    "accountBalanceScreenIncomeValue": "$4,000.00",
+    "accountBalanceScreenExpense": "Expense",
+    "accountBalanceScreenExpenseValue": "$1,187.40",
+    "accountBalanceScreenTransactions": "Transactions",
+    "accountBalanceScreenSeeAll": "See All",
+
+    "quicklyAnalysisScreenTitle": "Quick Analysis",
+    "quicklyAnalysisScreenChartAprilExpenses": "April Expenses",
+
+    "searchScreenTitle": "Search",
+    "searchScreenSearch": "Search...",
+    "searchScreenLabelCategories": "Categories",
+    "searchScreenLabelDate": "Date",
+    "searchScreenHintText": "Select the category",
+    "searchScreenHintTextDate": "30/APR/2023",
+    "searchScreenRadioReport": "Report",
+    "searchScreenRadioIncome": "Income",
+    "searchScreenRadioExpense": "Expense",
+
+    "calendarScreenTitle": "Calendar",
+    "calendarScreenSpends": "Spends",
+    "calendarScreenCategories": "Categories",
+
+    "categories": "Categories",
+    "profile": "Profile",
+    "editProfile": "Edit Profile",
+    "settings": "Settings",
+    "notificationSetting": "Notification Settings",
+    "passwordSetting": "Password Settings",
+    "deleteAccount": "Delete Account"
+  }

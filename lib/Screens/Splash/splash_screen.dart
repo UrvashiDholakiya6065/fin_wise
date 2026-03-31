@@ -2,6 +2,7 @@ import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,8 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           SizedBox(height: 10),
           Text(
-            TextsWidgets.fineWise,
+            AppLocalizations.of(context)?.translate("fineWise")??"fineWise",
+
             style: FontsWidgets.poppins(
               fontColor: ColorsWidgets.white,
               fontSize: 50,

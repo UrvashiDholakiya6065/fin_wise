@@ -3,6 +3,7 @@ import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Network/Repository/repository.dart';
 import 'package:fin_wise/SessionManage/shared_pref.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +45,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppbar().commonAppBar(
-        title: TextsWidgets.categories,
+
+        title:         AppLocalizations.of(context)?.translate("categories")??"categories",
+
         centerTitle: true,
       ),
 

@@ -3,6 +3,7 @@ import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,9 @@ class NotificationSettingScreen extends StatelessWidget {
       appBar: CommonAppbar().commonAppBar(
         backArrow: true,
         centerTitle: true,
-        title: TextsWidgets.notificationSetting,
+
+          title:           AppLocalizations.of(context)?.translate("notificationSetting")??"notificationSetting",
+
       ),
       body: CommonAppUi(
         bottomWidget: BlocBuilder<SettingBloc, SettingState>(

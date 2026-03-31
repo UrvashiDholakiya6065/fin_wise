@@ -8,6 +8,7 @@ import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/PngImages/images_widget.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/TextFields/text_fields.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,7 +43,9 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           CommonAppUi(
             topWidget: Text(
-              TextsWidgets.welcome,
+
+
+              AppLocalizations.of(context)?.translate("welcome")??"welcome",
               style: FontsWidgets.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.w600,
@@ -61,11 +64,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFields.commonTextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
-                        labelText: TextsWidgets.userNameOrEmail,
-                        hintText: TextsWidgets.hintTextEmail,
+                        labelText:AppLocalizations.of(context)?.translate("userNameOrEmail")??"userNameOrEmail",
+
+                        hintText: AppLocalizations.of(context)?.translate("hintTextEmail")??"hintTextEmail",
+
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.loginValidationEmail;
+
+                          return   AppLocalizations.of(context)?.translate("loginValidationEmail")??"loginValidationEmail";
                           }
                           if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
                             return "Enter valid email";
@@ -84,8 +90,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFields.commonTextFormField(
                         obscureText: isPassword,
                         controller: passwordController,
-                        labelText: TextsWidgets.password,
-                        hintText: TextsWidgets.hintTextPassword,
+
+                        labelText: AppLocalizations.of(context)?.translate("password")??"password",
+                        hintText: AppLocalizations.of(context)?.translate("hintTextPassword")??"hintTextPassword",
+
 
                         keyboardType: TextInputType.text,
 
@@ -111,7 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.loginValidationPassword;
+                            return  AppLocalizations.of(context)?.translate("loginValidationPassword")??"loginValidationPassword";
+
                           }
                           if (value.length < 6) {
                             return "Password must be 6 characters";
@@ -162,7 +171,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           return Center(
                             child: ButtonWidgets.appButton(
                               isLoading: loading,
-                              text: TextsWidgets.login,
+
+
+                                text:   AppLocalizations.of(context)?.translate("login")??"login",
                               onTap: () {
                                 FocusScope.of(context).unfocus();
                                 if (_formKey.currentState!.validate()) {
@@ -202,7 +213,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 18),
                       Center(
                         child: TextButtons.textButton(
-                          text: TextsWidgets.forgotPassword,
+                          text: AppLocalizations.of(context)?.translate("forgotPassword")??"forgotPassword",
+
                           onTap: () {
                             appRoute.push(
                               AppRoutePath.forgotPasswordScreen.path,
@@ -219,7 +231,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       Center(
                         child: ButtonWidgets.appButton(
-                          text: TextsWidgets.signup,
+
+
+                          text:    AppLocalizations.of(context)?.translate("signup")??"signup",
+
                           onTap: () {
                             appRoute.push(AppRoutePath.signupScreen.path);
                           },
@@ -236,7 +251,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            TextsWidgets.use,
+                            AppLocalizations.of(context)?.translate("use")??"use",
+
                             style: FontsWidgets.poppins(
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
@@ -245,7 +261,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           SizedBox(width: 4),
                           TextButtons.textButton(
-                            text: TextsWidgets.fingerprint,
+
+                            text: AppLocalizations.of(context)?.translate("fingerprint")??"fingerprint",
+
                             onTap: () {
                               appRoute.push(
                                 AppRoutePath.fingerprintScreen.path,
@@ -260,7 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(width: 4),
 
                           Text(
-                            TextsWidgets.toAccess,
+                            AppLocalizations.of(context)?.translate("toAccess")??"toAccess",
                             style: FontsWidgets.poppins(
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
@@ -272,6 +290,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 24),
 
                       commonSocialSignup(
+                        context,
                         onFacebookTap: () {},
                         onGoogleTap: () {},
                         onSignupTap: () {},

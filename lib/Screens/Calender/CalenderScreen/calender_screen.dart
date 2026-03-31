@@ -3,10 +3,13 @@ import 'package:fin_wise/Screens/Calender/CalenderWidgets/expense_chart.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../Utilites/GlobalWidgets/Buttons/CustomButtons/button_widgets.dart';
+import '../../../Utilites/GlobalWidgets/PngImages/images_widget.dart';
+import '../../../Utilites/GlobalWidgets/ThemeHelper/indian_currency_format.dart';
 import '../CalenderWidgets/calender_transaction_item.dart';
 import '../CalenderWidgets/calender_widget.dart';
 
@@ -22,9 +25,30 @@ class _CalenderScreenState extends State<CalenderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> transactionsLists = [
+
+      {
+        "icon": ImagesWidget.groceriesIcon,
+        "title": "Groceries",
+        "timeDate": "17:00 - April 24",
+        "category": "Pantry",
+        "amount": formatAmount(-100,context),
+        "isExpense": true
+      },
+      {
+        "icon": ImagesWidget.wallet,
+        "title": "Others",
+        "timeDate": "17:00 - April 24",
+        "category": "Payments",
+        "amount": formatAmount(12000,context),
+        "isExpense": false
+      },
+    ];
     return Scaffold(
       appBar: CommonAppbar().commonAppBar(
-        title: TextsWidgets.calenderScreenTitle,
+
+        title:        AppLocalizations.of(context)?.translate("calenderScreenTitle")??"calenderScreenTitle",
+
         backArrow: true,
         centerTitle: true,
       ),
@@ -43,7 +67,9 @@ class _CalenderScreenState extends State<CalenderScreen> {
                       backgroundColor: selectedIndex == 0
                           ? ColorsWidgets.mainAppColor
                           : ColorsWidgets.lightGreen,
-                      text: TextsWidgets.calenderScreenSpends,
+
+
+                      text:   AppLocalizations.of(context)?.translate("calenderScreenSpends")??"calenderScreenSpends",
                       onTap: () {
                         setState(() {
                           selectedIndex = 0;
@@ -57,7 +83,8 @@ class _CalenderScreenState extends State<CalenderScreen> {
                       backgroundColor: selectedIndex == 1
                           ? ColorsWidgets.mainAppColor
                           : ColorsWidgets.lightGreen,
-                      text: TextsWidgets.calenderScreenCategories,
+                      text:                       AppLocalizations.of(context)?.translate("calenderScreenCategories")??"calenderScreenCategories",
+
                       onTap: () {
                         setState(() {
                           selectedIndex = 1;

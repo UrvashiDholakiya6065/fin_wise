@@ -2,6 +2,7 @@ import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/Bloc/AuthBloc/auth_state.dart';
 import 'package:fin_wise/Model/user_model.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Enum/enum.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/Texts/language_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +46,8 @@ class _SignupScreenState extends State<SignupScreen> {
         children: [
           CommonAppUi(
             topWidget: Text(
-              TextsWidgets.createAccount,
+              AppLocalizations.of(context)?.translate("createAccount") ??
+                  "createAccount",
               style: FontsWidgets.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.w600,
@@ -56,19 +58,35 @@ class _SignupScreenState extends State<SignupScreen> {
               child: Form(
                 key: _formKey,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 14),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 14,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFields.commonTextFormField(
                         controller: fullNameController,
-                        labelText: TextsWidgets.lableFullName,
-                        hintText: TextsWidgets.hintTextFullName,
+
+                        labelText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("labelFullName") ??
+                            "labelFullName",
+
+                        hintText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("hintTextFullName") ??
+                            "hintTextFullName",
+
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.signupValidationFullName;
+                            return AppLocalizations.of(
+                                  context,
+                                )?.translate("signupValidationFullName") ??
+                                "signupValidationFullName";
                           }
-
                           return null;
                         },
                         contentHorizontal: 20,
@@ -82,11 +100,24 @@ class _SignupScreenState extends State<SignupScreen> {
                       TextFields.commonTextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
-                        labelText: TextsWidgets.lableEmail,
-                        hintText: TextsWidgets.hintTextEmail,
+
+                        labelText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("lableEmail") ??
+                            "lableEmail",
+                        hintText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("hintTextEmail") ??
+                            "hintTextEmail",
+
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.signupValidationEmail;
+                            return AppLocalizations.of(
+                                  context,
+                                )?.translate("signupValidationEmail") ??
+                                "signupValidationEmail";
                           }
                           if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
                             return "Enter valid email";
@@ -104,12 +135,17 @@ class _SignupScreenState extends State<SignupScreen> {
                       TextFields.commonTextFormField(
                         keyboardType: TextInputType.number,
                         controller: mobileController,
-                        labelText: TextsWidgets.lableMobileNumber,
-                        hintText: TextsWidgets.hintTextMobileNumber,
+
+                        labelText:                        AppLocalizations.of(context)?.translate("lableMobileNumber")??"lableMobileNumber",
+
+                        hintText:                         AppLocalizations.of(context)?.translate("hintTextMobileNumber")??"hintTextMobileNumber",
+
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.signupValidationMobileNumber;
-                          }
+
+                            return   AppLocalizations.of(context)?.translate("signupValidationMobileNumber")??"signupValidationMobileNumber";
+
+                        }
 
                           return null;
                         },
@@ -124,8 +160,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       TextFields.commonTextFormField(
                         readOnly: true,
                         controller: dobController,
-                        labelText: TextsWidgets.lableDob,
-                        hintText: TextsWidgets.hintTextDob,
+
+                        labelText:   AppLocalizations.of(context)?.translate("lableDob")??"lableDob",
+
+                        hintText:                        AppLocalizations.of(context)?.translate("hintTextDob")??"hintTextDob",
+
                         onTap: () async {
                           FocusScope.of(context).unfocus();
 
@@ -144,8 +183,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.signupValidationDob;
-                          }
+
+                          return  AppLocalizations.of(context)?.translate("signupValidationDob")??"signupValidationDob";
+
+                        }
                           return null;
                         },
                         contentHorizontal: 20,
@@ -160,8 +201,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       TextFields.commonTextFormField(
                         obscureText: isPassword,
                         controller: passwordController,
-                        labelText: TextsWidgets.password,
-                        hintText: TextsWidgets.hintTextPassword,
+
+
+                        labelText: AppLocalizations.of(context)?.translate("password")??"password",
+
+                        hintText:                         AppLocalizations.of(context)?.translate("hintTextPassword")??"hintTextPassword",
+
                         suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -184,7 +229,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.signupValidationPassword;
+
+                          return  AppLocalizations.of(context)?.translate("signupValidationPassword")??"signupValidationPassword";
+
                           }
                           if (value.length < 6) {
                             return "Password must be 6 characters";
@@ -203,8 +250,10 @@ class _SignupScreenState extends State<SignupScreen> {
                       TextFields.commonTextFormField(
                         obscureText: isConfirmPassword,
                         controller: confirmPasswordController,
-                        labelText: TextsWidgets.lableConfirmPassword,
-                        hintText: TextsWidgets.hintTextConfirmPassword,
+
+                        labelText:     AppLocalizations.of(context)?.translate("lableConfirmPassword")??"lableConfirmPassword",
+
+                        hintText:  AppLocalizations.of(context)?.translate("hintTextConfirmPassword")??"hintTextConfirmPassword",
 
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -228,7 +277,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return TextsWidgets.signupValidationConfirmPassword;
+
+                          return AppLocalizations.of(context)?.translate("signupValidationConfirmPassword")??"signupValidationConfirmPassword";
+
                           }
                           if (value != passwordController.text) {
                             return "Password does not match";
@@ -247,7 +298,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            TextsWidgets.signupDis,
+                            AppLocalizations.of(context)?.translate("signupDis")??"signupDis",
+
                             style: FontsWidgets.leagueSpartan(
                               fontWeight: FontWeight.w400,
                               fontColor: ColorsWidgets.darkGrey,
@@ -258,7 +310,9 @@ class _SignupScreenState extends State<SignupScreen> {
 
                             children: [
                               TextButtons.textButton(
-                                text: TextsWidgets.signupTerms,
+
+                                text:                                 AppLocalizations.of(context)?.translate("signupTerms")??"signupTerms",
+
                                 onTap: () {},
                                 textStyle: FontsWidgets.leagueSpartan(
                                   fontWeight: FontWeight.w600,
@@ -268,7 +322,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                               SizedBox(width: 4),
                               Text(
-                                TextsWidgets.signupAnd,
+                                AppLocalizations.of(context)?.translate("signupAnd")??"signupAnd",
                                 style: FontsWidgets.leagueSpartan(
                                   fontWeight: FontWeight.w400,
                                   fontColor: ColorsWidgets.darkGrey,
@@ -277,7 +331,10 @@ class _SignupScreenState extends State<SignupScreen> {
                               SizedBox(width: 4),
 
                               TextButtons.textButton(
-                                text: TextsWidgets.signupPrivacyPolicy,
+
+
+                                text:     AppLocalizations.of(context)?.translate("signupPrivacyPolicy")??"signupPrivacyPolicy",
+
                                 onTap: () {},
                                 textStyle: FontsWidgets.leagueSpartan(
                                   fontWeight: FontWeight.w600,
@@ -305,13 +362,16 @@ class _SignupScreenState extends State<SignupScreen> {
                           }
                         },
                         builder: (context, state) {
-                          final loading = state.registrationStatus == AuthStatus.loading;
-
+                          final loading =
+                              state.registrationStatus == AuthStatus.loading;
 
                           return Center(
                             child: ButtonWidgets.appButton(
                               isLoading: loading,
-                              text: TextsWidgets.signup,
+
+
+                              text:                              AppLocalizations.of(context)?.translate("signup")??"signup",
+
                               onTap: () {
                                 FocusScope.of(context).unfocus();
                                 if (_formKey.currentState!.validate()) {
@@ -364,14 +424,18 @@ class _SignupScreenState extends State<SignupScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            TextsWidgets.alreadyHaveAnAccount,
+
+                            AppLocalizations.of(context)?.translate("alreadyHaveAnAccount")??"alreadyHaveAnAccount",
+
                             style: FontsWidgets.leagueSpartan(
                               fontWeight: FontWeight.w300,
                             ),
                           ),
                           SizedBox(width: 4),
                           TextButtons.textButton(
-                            text: TextsWidgets.login,
+
+                            text:                            AppLocalizations.of(context)?.translate("login")??"login",
+
                             onTap: () {
                               appRoute.pop();
                             },
