@@ -90,7 +90,7 @@ class SavingsGoalsWidget {
                 SizedBox(height: 8),
 
                 Row(
-                  children: [
+                         children: [
                     Image.asset(ImagesWidget.food, height: 24),
                     SizedBox(width: 8),
                     Column(
@@ -98,7 +98,6 @@ class SavingsGoalsWidget {
                       children: [
                         Text(
                           AppLocalizations.of(context)?.translate("foodLastWeek")??"foodLastWeek",
-
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w400,
                             fontColor: ColorsWidgets.darkGreen,

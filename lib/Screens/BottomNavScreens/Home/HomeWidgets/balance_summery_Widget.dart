@@ -13,8 +13,7 @@ class BalanceSummeryWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: GestureDetector(
-        onTap: (){
-
+        onTap: () {
           print("Tap In Balance Summery");
           appRoute.push(AppRoutePath.accountBalanceScreen.path);
         },
@@ -35,7 +34,10 @@ class BalanceSummeryWidget {
                           Image.asset(ImagesWidget.incomeImg, height: 12),
                           SizedBox(width: 4),
                           Text(
-                              AppLocalizations.of(context)?.translate("totalBalance")??"totalBalance",
+                            AppLocalizations.of(
+                                  context,
+                                )?.translate("totalBalance") ??
+                                "totalBalance",
 
                             style: FontsWidgets.poppins(
                               fontWeight: FontWeight.w400,
@@ -46,13 +48,15 @@ class BalanceSummeryWidget {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        formatAmount(7783,context),
-                        style: FontsWidgets.poppins(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24,
-                          fontColor: ColorsWidgets.white,
-                        ),
-                      ),
+                            formatAmount(7783, context),
+
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,fontSize: 24),
+                              // style: FontsWidgets.poppins(
+                              //         fontWeight: FontWeight.w700,
+                              //         fontSize: 24,
+                              //         fontColor: ColorsWidgets.white,
+
+                      )
                     ],
                   ),
 
@@ -66,7 +70,10 @@ class BalanceSummeryWidget {
                           Image.asset(ImagesWidget.expenseImg, height: 12),
                           SizedBox(width: 4),
                           Text(
-                            AppLocalizations.of(context)?.translate("totalExpense")??"totalExpense",
+                            AppLocalizations.of(
+                                  context,
+                                )?.translate("totalExpense") ??
+                                "totalExpense",
 
                             style: FontsWidgets.poppins(
                               fontWeight: FontWeight.w400,
@@ -77,11 +84,11 @@ class BalanceSummeryWidget {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        formatAmount(-1187.40,context),
-                        style: FontsWidgets.poppins(
+                        formatAmount(-1187.40, context),
+                        style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 24,
-                          fontColor: ColorsWidgets.blue,
+                          color: ColorsWidgets.blue,
                         ),
                       ),
                     ],
@@ -121,7 +128,7 @@ class BalanceSummeryWidget {
                           style: FontsWidgets.poppins(
                             fontWeight: FontWeight.w400,
                             fontColor: ColorsWidgets.white,
-                            fontSize: 12
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -132,10 +139,11 @@ class BalanceSummeryWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 12),
                         child: Text(
-                          formatAmount(20000,context),
-                          style: FontsWidgets.poppins(
+                          formatAmount(20000, context),
+                          style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontColor: ColorsWidgets.darkGreen,   fontStyle: FontStyle.italic,
+                            color: ColorsWidgets.darkGreen,
+                            fontStyle: FontStyle.italic,
                           ),
                         ),
                       ),
@@ -148,10 +156,13 @@ class BalanceSummeryWidget {
 
               Row(
                 children: [
-                  Icon(Icons.check_box_outlined,size: 16,),
+                  Icon(Icons.check_box_outlined, size: 16),
                   SizedBox(width: 8),
                   Text(
-                    AppLocalizations.of(context)?.translate("expenseStatusMessage")??"expenseStatusMessage",
+                    AppLocalizations.of(
+                          context,
+                        )?.translate("expenseStatusMessage") ??
+                        "expenseStatusMessage",
                     style: TextStyle(fontSize: 14),
                   ),
                 ],
@@ -163,8 +174,3 @@ class BalanceSummeryWidget {
     );
   }
 }
-
-
-
-
-

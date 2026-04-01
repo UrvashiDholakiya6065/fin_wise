@@ -93,41 +93,41 @@ class _CategoriesDetailScreenState extends State<CategoriesDetailScreen> {
                 BlocBuilder<ExpenseBloc, ExpenseState>(
                   builder: (context, state) {
                     final expenses = state.expenseList ?? [];
-                    // expenses.sort((a, b) {
-                    //   DateTime dateA = DateFormat('MM/dd/yyyy').parse(a.date);
-                    //   DateTime dateB = DateFormat('MM/dd/yyyy').parse(b.date);
-                    //   return dateB.compareTo(dateA);
-                    // });
-                    //
-                    // String lastMonth = "";
+                    expenses.sort((a, b) {
+                      DateTime dateA = DateFormat('MM/dd/yyyy').parse(a.date);
+                      DateTime dateB = DateFormat('MM/dd/yyyy').parse(b.date);
+                      return dateB.compareTo(dateA);
+                    });
+
+                    String lastMonth = "";
                     return ListView.builder(
                       itemCount: expenses.length,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         final item = expenses[index];
-                        // DateTime expenseDate =
-                        // DateFormat('MM/dd/yyyy').parse(item.date);
-                        //
-                        // String currentMonth =
-                        // DateFormat('MMMM yyyy').format(expenseDate);
-                        //
-                        // bool showHeader = currentMonth != lastMonth;
-                        // lastMonth = currentMonth;
+                        DateTime expenseDate =
+                        DateFormat('MM/dd/yyyy').parse(item.date);
+
+                        String currentMonth =
+                        DateFormat('MMMM yyyy').format(expenseDate);
+
+                        bool showHeader = currentMonth != lastMonth;
+                        lastMonth = currentMonth;
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
-                            // if (showHeader)
-                            //   Padding(
-                            //     padding:
-                            //     const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-                            //     child: Text(
-                            //       currentMonth,
-                            //       style: const TextStyle(
-                            //           fontSize: 18, fontWeight: FontWeight.bold),
-                            //     ),
-                            //   ),
+                            if (showHeader)
+                              Padding(
+                                padding:
+                                const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                                child: Text(
+                                  currentMonth,
+                                  style: const TextStyle(
+                                      fontSize: 18, fontWeight: FontWeight.bold),
+                                ),
+                              ),
 
                             Padding(
 

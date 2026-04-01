@@ -20,9 +20,17 @@
   "18:27 - April 30": "18:27 - 30 अप्रैल",
   "17:00 - April 24": "17:00 - 24 अप्रैल",
   "8:30 - April 15": "8:30 - 15 अप्रैल",
+  "lableMobileNumber": "मोबाइल नंबर",
+  "lableDob": "जन्म तिथि",
+  "lableConfirmPassword": "पासवर्ड की पुष्टि करें",
+  "Logout Account": "खाता लॉगआउट करें",
+  "Are you sure you want to logout account?": "क्या आप वाकई अपने खाते से लॉगआउट करना चाहते हैं?",
+  "Cancel": "रद्द करें",
+  "Logout  Account Successfully": "खाते से सफलतापूर्वक लॉगआउट हो गया",
+  "ChatList": "चैट सूची",
 
   "Pantry": "पेंट्री",
-
+  "lableEmail": "ईमेल",
   "userNameOrEmail": "यूज़रनेम या ईमेल",
   "hintTextEmail": "example@example.com",
   "password": "पासवर्ड",

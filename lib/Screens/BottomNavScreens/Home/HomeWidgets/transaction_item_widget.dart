@@ -101,9 +101,9 @@ class TransactionItemWidget {
           child: Text(
             amount,
             overflow: TextOverflow.ellipsis,
-            style: FontsWidgets.poppins(
+            style: TextStyle(
               fontWeight: FontWeight.w500,
-              fontColor: isExpense
+              color: isExpense
                   ? ColorsWidgets.blue
                   : ColorsWidgets.darkGreen,
             ),

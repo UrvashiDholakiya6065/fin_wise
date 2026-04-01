@@ -12,25 +12,29 @@
   "Weekly": "સાપ્તાહિક",
   "Monthly": "માસિક",
   "Edit Profile": "પ્રોફાઇલ સંપાદિત કરો",
-
+  "lableEmail": "ઇમેલ",
   "Pantry": "પેન્ટ્રી",
 
   "Security": "સુરક્ષા",
   "Setting": "સેટિંગ",
   "Help": "મદદ",
   "Logout": "લૉગ આઉટ",
-
+  "ChatList": "ચેટ સૂચિ",
 
   "18:27 - April 30": "18:27 - 30 એપ્રિલ",
   "17:00 - April 24": "17:00 - 24 એપ્રિલ",
   "8:30 - April 15": "8:30 - 15 એપ્રિલ",
-
-
-
   "userNameOrEmail": "યૂઝરનેમ અથવા ઈમેલ",
+  "lableConfirmPassword": "પાસવર્ડની પુષ્ટિ કરો",
   "hintTextEmail": "example@example.com",
   "password": "પાસવર્ડ",
+  "lableMobileNumber": "મોબાઇલ નંબર",
+  "lableDob": "જન્મ તારીખ",
   "hintTextPassword": "●●●●●●●●",
+  "Are you sure you want to logout account?": "શું તમે ખરેખર તમારા એકાઉન્ટમાંથી લોગઆઉટ થવા માંગો છો?",
+  "Logout Account": "એકાઉન્ટ લોગઆઉટ કરો",
+  "Logout  Account Successfully": "એકાઉન્ટમાંથી સફળતાપૂર્વક લોગઆઉટ થઈ ગયું",
+  "Cancel": "રદ કરો",
   "Salary": "પગાર",
   "Groceries": "કિરાણા",
   "Rent": "ભાડું",

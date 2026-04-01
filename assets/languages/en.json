@@ -19,6 +19,7 @@
     "Setting": "Setting",
     "Help": "Help",
     "Logout": "Logout",
+    "ChatList": "Chat List",
 
     "18:27 - April 30": "18:27 - April 30",
     "17:00 - April 24": "17:00 - April 24",
@@ -39,8 +40,18 @@
     "fingerprint": "Fingerprint",
     "toAccess": "to Access",
     "orSignUpWith": "or sign up with",
-
+      "lableEmail": "Email",
+"lableMobileNumber": "Mobile Number",
+    "Are you sure you want to logout account?": "Are you sure you want to logout account?",
+    "Cancel": "Cancel",
+    "Logout  Account Successfully": "Logout  Account Successfully",
     "dontHaveAccount": "Don’t have an account?",
+      "lableConfirmPassword": "Confirm Password",
+      "lableDob": "Dob",
+
+    "Logout Account": "Logout Account",
+
+
     "createAccount": "Create Account",
     "Daily": "Daily",
     "Weekly": "Weekly",

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../AppRoute/app_route.dart';
+import '../../../../Utilites/GlobalWidgets/Texts/language_controller.dart';
 
 class DialogBox {
   void showDeleteDialog(BuildContext context) {
@@ -17,14 +18,27 @@ class DialogBox {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          title: Text("Logout Account"),
-          content: Text("Are you sure you want to logout account?"),
+
+          title: Text(
+            AppLocalizations.of(context)?.translate("Logout Account") ??
+                "Logout Account",
+          ),
+
+          content: Text(
+            AppLocalizations.of(
+                  context,
+                )?.translate("Are you sure you want to logout account?") ??
+                "Are you sure you want to logout account?",
+          ),
           actions: [
             TextButton(
               onPressed: () {
                 appRoute.pop(context);
               },
-              child: Text("Cancel"),
+
+              child: Text(
+                AppLocalizations.of(context)?.translate("Cancel") ?? "Cancel",
+              ),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -33,10 +47,21 @@ class DialogBox {
               onPressed: () {
                 context.read<AuthBloc>().add(LogoutEvent());
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Logout  Account Successfully")),
+                  SnackBar(
+                    content: Text(
+                      AppLocalizations.of(
+                            context,
+                          )?.translate("Logout  Account Successfully") ??
+                          "Logout  Account Successfully",
+                    ),
+                  ),
                 );
               },
-              child: Text("Logout", style: TextStyle(color: Colors.white)),
+
+              child: Text(
+                AppLocalizations.of(context)?.translate("Logout") ?? "Logout",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         );

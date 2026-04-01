@@ -136,16 +136,25 @@ class _SignupScreenState extends State<SignupScreen> {
                         keyboardType: TextInputType.number,
                         controller: mobileController,
 
-                        labelText:                        AppLocalizations.of(context)?.translate("lableMobileNumber")??"lableMobileNumber",
+                        labelText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("lableMobileNumber") ??
+                            "lableMobileNumber",
 
-                        hintText:                         AppLocalizations.of(context)?.translate("hintTextMobileNumber")??"hintTextMobileNumber",
+                        hintText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("hintTextMobileNumber") ??
+                            "hintTextMobileNumber",
 
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-
-                            return   AppLocalizations.of(context)?.translate("signupValidationMobileNumber")??"signupValidationMobileNumber";
-
-                        }
+                            return AppLocalizations.of(
+                                  context,
+                                )?.translate("signupValidationMobileNumber") ??
+                                "signupValidationMobileNumber";
+                          }
 
                           return null;
                         },
@@ -161,9 +170,17 @@ class _SignupScreenState extends State<SignupScreen> {
                         readOnly: true,
                         controller: dobController,
 
-                        labelText:   AppLocalizations.of(context)?.translate("lableDob")??"lableDob",
+                        labelText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("lableDob") ??
+                            "lableDob",
 
-                        hintText:                        AppLocalizations.of(context)?.translate("hintTextDob")??"hintTextDob",
+                        hintText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("hintTextDob") ??
+                            "hintTextDob",
 
                         onTap: () async {
                           FocusScope.of(context).unfocus();
@@ -183,10 +200,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-
-                          return  AppLocalizations.of(context)?.translate("signupValidationDob")??"signupValidationDob";
-
-                        }
+                            return AppLocalizations.of(
+                                  context,
+                                )?.translate("signupValidationDob") ??
+                                "signupValidationDob";
+                          }
                           return null;
                         },
                         contentHorizontal: 20,
@@ -202,10 +220,17 @@ class _SignupScreenState extends State<SignupScreen> {
                         obscureText: isPassword,
                         controller: passwordController,
 
+                        labelText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("password") ??
+                            "password",
 
-                        labelText: AppLocalizations.of(context)?.translate("password")??"password",
-
-                        hintText:                         AppLocalizations.of(context)?.translate("hintTextPassword")??"hintTextPassword",
+                        hintText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("hintTextPassword") ??
+                            "hintTextPassword",
 
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -229,9 +254,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-
-                          return  AppLocalizations.of(context)?.translate("signupValidationPassword")??"signupValidationPassword";
-
+                            return AppLocalizations.of(
+                                  context,
+                                )?.translate("signupValidationPassword") ??
+                                "signupValidationPassword";
                           }
                           if (value.length < 6) {
                             return "Password must be 6 characters";
@@ -251,9 +277,17 @@ class _SignupScreenState extends State<SignupScreen> {
                         obscureText: isConfirmPassword,
                         controller: confirmPasswordController,
 
-                        labelText:     AppLocalizations.of(context)?.translate("lableConfirmPassword")??"lableConfirmPassword",
+                        labelText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("lableConfirmPassword") ??
+                            "lableConfirmPassword",
 
-                        hintText:  AppLocalizations.of(context)?.translate("hintTextConfirmPassword")??"hintTextConfirmPassword",
+                        hintText:
+                            AppLocalizations.of(
+                              context,
+                            )?.translate("hintTextConfirmPassword") ??
+                            "hintTextConfirmPassword",
 
                         suffixIcon: GestureDetector(
                           onTap: () {
@@ -277,9 +311,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-
-                          return AppLocalizations.of(context)?.translate("signupValidationConfirmPassword")??"signupValidationConfirmPassword";
-
+                            return AppLocalizations.of(context)?.translate(
+                                  "signupValidationConfirmPassword",
+                                ) ??
+                                "signupValidationConfirmPassword";
                           }
                           if (value != passwordController.text) {
                             return "Password does not match";
@@ -298,7 +333,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            AppLocalizations.of(context)?.translate("signupDis")??"signupDis",
+                            AppLocalizations.of(
+                                  context,
+                                )?.translate("signupDis") ??
+                                "signupDis",
 
                             style: FontsWidgets.leagueSpartan(
                               fontWeight: FontWeight.w400,
@@ -310,8 +348,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
                             children: [
                               TextButtons.textButton(
-
-                                text:                                 AppLocalizations.of(context)?.translate("signupTerms")??"signupTerms",
+                                text:
+                                    AppLocalizations.of(
+                                      context,
+                                    )?.translate("signupTerms") ??
+                                    "signupTerms",
 
                                 onTap: () {},
                                 textStyle: FontsWidgets.leagueSpartan(
@@ -322,7 +363,10 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                               SizedBox(width: 4),
                               Text(
-                                AppLocalizations.of(context)?.translate("signupAnd")??"signupAnd",
+                                AppLocalizations.of(
+                                      context,
+                                    )?.translate("signupAnd") ??
+                                    "signupAnd",
                                 style: FontsWidgets.leagueSpartan(
                                   fontWeight: FontWeight.w400,
                                   fontColor: ColorsWidgets.darkGrey,
@@ -331,9 +375,11 @@ class _SignupScreenState extends State<SignupScreen> {
                               SizedBox(width: 4),
 
                               TextButtons.textButton(
-
-
-                                text:     AppLocalizations.of(context)?.translate("signupPrivacyPolicy")??"signupPrivacyPolicy",
+                                text:
+                                    AppLocalizations.of(
+                                      context,
+                                    )?.translate("signupPrivacyPolicy") ??
+                                    "signupPrivacyPolicy",
 
                                 onTap: () {},
                                 textStyle: FontsWidgets.leagueSpartan(
@@ -369,8 +415,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: ButtonWidgets.appButton(
                               isLoading: loading,
 
-
-                              text:                              AppLocalizations.of(context)?.translate("signup")??"signup",
+                              text:
+                                  AppLocalizations.of(
+                                    context,
+                                  )?.translate("signup") ??
+                                  "signup",
 
                               onTap: () {
                                 FocusScope.of(context).unfocus();
@@ -424,8 +473,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-
-                            AppLocalizations.of(context)?.translate("alreadyHaveAnAccount")??"alreadyHaveAnAccount",
+                            AppLocalizations.of(
+                                  context,
+                                )?.translate("alreadyHaveAnAccount") ??
+                                "alreadyHaveAnAccount",
 
                             style: FontsWidgets.leagueSpartan(
                               fontWeight: FontWeight.w300,
@@ -433,8 +484,11 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           SizedBox(width: 4),
                           TextButtons.textButton(
-
-                            text:                            AppLocalizations.of(context)?.translate("login")??"login",
+                            text:
+                                AppLocalizations.of(
+                                  context,
+                                )?.translate("login") ??
+                                "login",
 
                             onTap: () {
                               appRoute.pop();

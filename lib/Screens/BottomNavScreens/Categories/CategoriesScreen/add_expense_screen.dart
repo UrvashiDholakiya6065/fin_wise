@@ -226,7 +226,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                           print("New balance :::$newExpenseAmount");
 
 
-                        if (newExpenseAmount > currentBalance) {
+                        if (newExpenseAmount < currentBalance) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text("Not enough balance!")),
                           );

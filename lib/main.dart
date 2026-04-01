@@ -16,6 +16,7 @@ import 'Bloc/LanguageBloc/language_bloc.dart';
 import 'Bloc/LanguageBloc/language_event.dart';
 import 'Bloc/NotificatioBloc/notification_bloc.dart';
 import 'Bloc/PeriodBloc/period_bloc.dart';
+import 'Bloc/ProfileBloc/profile_bloc.dart';
 import 'Bloc/ProfileSettingBloc/setting_bloc.dart';
 import 'Network/Repository/repository.dart';
 import 'Utilites/GlobalWidgets/Texts/language_controller.dart';
@@ -58,6 +59,7 @@ Future<void> main() async {
         BlocProvider<ExpenseBloc>(create: (context) => ExpenseBloc(repository,)),
         BlocProvider<NotificationBloc>(create: (context) => NotificationBloc(repository,)),
         BlocProvider<SettingBloc>(create: (context) => SettingBloc()),
+        BlocProvider<ProfileBloc>(create: (context) => ProfileBloc(authBloc: context.read<AuthBloc>(),)),
         BlocProvider<LanguageBloc>(
           create: (context) => LanguageBloc()..add(LoadLanguageEvent()),
         ),      ],
