@@ -27,7 +27,9 @@ enum AppRoutePath {
   editProfileScreen('/EditProfile','EditProfile'),
   settingScreen('/SettingScreen','SettingScreen'),
   notificationSettingScreen('/NotificationSettingScreen','NotificationSettingScreen'),
-  passwordSettingScreen('/PasswordSettingScreen','PasswordSettingScreen');
+  passwordSettingScreen('/PasswordSettingScreen','PasswordSettingScreen'),
+  chatListScreen('/ChatListScreen','ChatListScreen'),
+  chatScreen('/ChatScreen','ChatScreen');
 
   final String path;
   final String name;

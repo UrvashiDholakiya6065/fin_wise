@@ -40,3 +40,10 @@ class ChangePasswordEvent extends AuthEvent {
     required this.newPassword,
   });
 }
+
+class SelectRoleEvent extends AuthEvent {
+  final String role;
+
+  SelectRoleEvent({required this.role});
+}
+class LoadChatListEvent extends AuthEvent{}

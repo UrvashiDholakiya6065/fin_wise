@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Bloc/AuthBloc/auth_bloc.dart';
 import '../../../../Bloc/AuthBloc/auth_event.dart';
-import '../../../../Bloc/LanguageBloc/language_event.dart';
 import '../../../../Network/TranslateRepo/transalre_repo.dart';
 import '../../../../Utilites/GlobalWidgets/CommonAppBar/common_appbar.dart';
 import '../../../../Utilites/GlobalWidgets/PngImages/images_widget.dart';

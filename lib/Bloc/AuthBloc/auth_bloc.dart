@@ -25,6 +25,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogoutEvent>(logoutBloc);
     on<EditProfileEvent>(editProfile);
     on<ChangePasswordEvent>(changePassword);
+    on<SelectRoleEvent>(selectedRole);
+    on<LoadChatListEvent>(onLoadChatList);
   }
 
 
@@ -190,6 +192,51 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(state.copyWith(
         changePasswordStatus: ChangePasswordStatus.error,
       ));
+    }
+  }
+
+  void selectedRole(SelectRoleEvent event,emit){
+
+      emit(state.copyWith(selectedRole: event.role));
+
+  }
+  Future<void> onLoadChatList(
+      LoadChatListEvent event,
+      Emitter<AuthState> emit,
+      ) async {
+
+    emit(state.copyWith(chatListStatus: ChatListStatus.loading));
+
+    try {
+      final currentUser = await repository.getCurrentUserDetails();
+      final role = currentUser?.role;
+
+      if (role == "admin") {
+        final admins = await repository.getAllUsers();
+        print("ADMINS COUNT: ${admins.length}");
+
+        emit(state.copyWith(
+          chatListStatus: ChatListStatus.success,
+          users: admins,
+          selectedRole: role,
+          currentUser: currentUser
+        ));
+
+      } else if (role == "user") {
+        final users = await repository.getAllAdmins();
+        print("USERS COUNT: ${users.length}");
+
+
+        emit(state.copyWith(
+          chatListStatus: ChatListStatus.success,
+          admins: users,
+          selectedRole: role,
+          currentUser: currentUser
+        )
+        );
+      }
+    } catch (e) {
+      emit(state.copyWith(   chatListStatus: ChatListStatus.error,));
     }
   }
   }

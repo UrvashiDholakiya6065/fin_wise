@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:fin_wise/Model/expense_model.dart';
 import 'package:fin_wise/Network/Repository/repository.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Enum/enum.dart';
-import 'package:meta/meta.dart';
 
 import '../../Model/add_balance_model.dart';
 
@@ -81,14 +80,12 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
   Future<void> addBalanceBloc(AddBalanceEvent event, Emitter<ExpenseState> emit) async {
     emit(state.copyWith(addBalanceStatus: AddBalanceStatus.loading));
     try {
-      // Current balance, default 0 if null
       double currentBalance = 0;
       if (state.addBalanceModel != null) {
         currentBalance = double.tryParse(
             state.addBalanceModel!.addBalance.replaceAll(",", "")) ?? 0;
       }
 
-      // New balance input
       double newBalance = double.tryParse(
           event.addBalanceModel.addBalance.replaceAll(",", "")) ?? 0;
 

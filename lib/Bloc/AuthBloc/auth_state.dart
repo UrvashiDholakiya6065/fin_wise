@@ -2,6 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:fin_wise/Model/user_model.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Enum/enum.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthState extends Equatable {
   final AuthStatus? registrationStatus;
@@ -10,6 +11,13 @@ class AuthState extends Equatable {
   final EditProfileStatus? editProfileStatus;
   final ChangePasswordStatus? changePasswordStatus;
   final String? changePasswordError;
+  final String selectedRole;
+  final ChatListStatus? chatListStatus;
+  final List<UserModel> admins;
+  final List<UserModel> users;
+  final UserModel? currentUser;
+
+
 
 
 
@@ -19,7 +27,13 @@ class AuthState extends Equatable {
     this.userModel,
     this.editProfileStatus,
     this.changePasswordStatus,
-    this.changePasswordError
+    this.changePasswordError,
+    this.selectedRole="user",
+    this.admins=const [],
+    this.users=const [],
+    this.chatListStatus,
+    this.currentUser
+
 
   });
 
@@ -30,6 +44,13 @@ class AuthState extends Equatable {
     EditProfileStatus? editProfileStatus,
     ChangePasswordStatus? changePasswordStatus,
     String? changePasswordError,
+    String? selectedRole,
+    List<UserModel>? admins,
+    List<UserModel>? users,
+    ChatListStatus? chatListStatus,
+     UserModel? currentUser,
+
+
 
   }) {
     return AuthState(
@@ -39,6 +60,11 @@ class AuthState extends Equatable {
       editProfileStatus: editProfileStatus??this.editProfileStatus,
       changePasswordStatus: changePasswordStatus??this.changePasswordStatus,
       changePasswordError: changePasswordError ?? this.changePasswordError,
+      selectedRole: selectedRole??this.selectedRole,
+      admins: admins??this.admins,
+      users: users??this.users,
+      chatListStatus: chatListStatus??this.chatListStatus,
+      currentUser: currentUser??this.currentUser
     );
   }
   @override
@@ -49,6 +75,8 @@ class AuthState extends Equatable {
     userModel,
     editProfileStatus,
     changePasswordStatus,
-    changePasswordError
+    changePasswordError,
+    selectedRole,
+    admins,users,chatListStatus,currentUser
   ];
 }

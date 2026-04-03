@@ -10,14 +10,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../AppRoute/app_route.dart';
 import '../../AppRoute/app_route_path.dart';
 import '../../SessionManage/shared_pref.dart';
-import '../../Utilites/GlobalWidgets/BiomatricService/biomatric_service.dart';
 import '../../Utilites/GlobalWidgets/Buttons/CustomButtons/button_widgets.dart';
 import '../../Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import '../../Utilites/GlobalWidgets/CommonAppUi/common_app_ui.dart';
 import '../../Utilites/GlobalWidgets/Enum/enum.dart';
 import '../../Utilites/GlobalWidgets/Fonts/fonts_widgets.dart';
 import '../../Utilites/GlobalWidgets/PngImages/images_widget.dart';
-import '../../Utilites/GlobalWidgets/Texts/texts_widgets.dart';
 
 class FingerprintScreen extends StatefulWidget {
 
@@ -85,7 +83,7 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
                       SizedBox(height: 42),
                   Image.asset(ImagesWidget.fingerPrint, height: 185),
                   SizedBox(height: 24),
-                  Text(
+                        Text(
                     AppLocalizations.of(context)?.translate("useFingerprintToAccess")??"useFingerprintToAccess",
                     style: FontsWidgets.poppins(
                       fontWeight: FontWeight.w600,
@@ -104,33 +102,7 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
                     ),
                   ),
                   SizedBox(height: 65),
-                  // BlocConsumer<AuthBloc, AuthState>(
-                  //   listener: (context, state) {
-                  //     if (state.biometricStatus == BioStatus.success) {
-                  //       appRoute.go(AppRoutePath.homeScreen.path);
-                  //     } else if (state.biometricStatus == BioStatus.error) {
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         SnackBar(content: Text("Biometric failed!")),
-                  //       );
-                  //     }
-                  //   },
-                  //   builder: (context, state) {
-                  //     return ButtonWidgets.appButton(
-                  //       text: TextsWidgets.useTouchId,
-                  //       onTap: () async {
-                  //
-                  //         context.read<AuthBloc>().add(LoginWithBiometricEvent());
-                  //         // appRoute.push(AppRoutePath.homeScreen.path);
-                  //       },
-                  //       backgroundColor: ColorsWidgets.lightGreen,
-                  //       height: 40,
-                  //       width: double.infinity,
-                  //       textColor: ColorsWidgets.darkGreen,
-                  //       fontSize: 20,
-                  //       fontWeight: FontWeight.w600,
-                  //     );
-                  //   },
-                  // ),
+
                   BlocConsumer<AuthBloc, AuthState>(
                     listener: (context, state) async {
                       if (state.biometricStatus == BioStatus.success) {
@@ -139,8 +111,6 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
                         await SharedPref.setBiometricEnable(true);
 
                         appRoute.go(AppRoutePath.homeScreen.path);
-
-                        // }
                       } else if (state.biometricStatus == BioStatus.error) {
 
                         ScaffoldMessenger.of(context).showSnackBar(

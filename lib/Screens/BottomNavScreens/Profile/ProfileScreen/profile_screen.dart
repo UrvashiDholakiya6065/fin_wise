@@ -151,11 +151,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ?.translate("Help") ??
                                 "Help",
                           ),
-                          ProfileWidgets().profileTile(
-                            ImagesWidget.profileScreenHelpImg,
-                            AppLocalizations.of(context)
-                                ?.translate("ChatList") ??
-                                "ChatList",
+                          GestureDetector(
+                            onTap: (){
+                              appRoute.push(AppRoutePath.chatListScreen.path);
+                            },
+                            child: ProfileWidgets().profileTile(
+                              ImagesWidget.profileScreenHelpImg,
+                              AppLocalizations.of(context)
+                                  ?.translate("ChatList") ??
+                                  "ChatList",
+                            ),
                           ),
                           Row(
                             children: [

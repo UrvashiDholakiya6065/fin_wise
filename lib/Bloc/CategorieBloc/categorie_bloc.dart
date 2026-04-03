@@ -39,21 +39,14 @@ class CategorieBloc extends Bloc<CategorieEvent, CategorieState> {
     emit(state.copyWith(categorieStatus: CategorieStatus.loading));
 
     try {
-
       // final uid = FirebaseInstanceClass.auth.currentUser!.uid;
-
       final categories = await repository.getCategories();
-
       emit(state.copyWith(
         categorieStatus: CategorieStatus.success, categories: categories,
       ));
-
     } catch (e) {
-
       emit(state.copyWith(categorieStatus: CategorieStatus.error));
-
     }
   }
-
   }
 

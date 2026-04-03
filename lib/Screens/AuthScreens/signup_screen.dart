@@ -45,13 +45,119 @@ class _SignupScreenState extends State<SignupScreen> {
       body: Stack(
         children: [
           CommonAppUi(
-            topWidget: Text(
-              AppLocalizations.of(context)?.translate("createAccount") ??
-                  "createAccount",
-              style: FontsWidgets.poppins(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-                fontColor: ColorsWidgets.darkGreen,
+            topWidget: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)?.translate("createAccount") ??
+                        "createAccount",
+                    style: FontsWidgets.poppins(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      fontColor: ColorsWidgets.darkGreen,
+                    ),
+                  ),
+                  BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Select Role",
+                            style: FontsWidgets.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              fontColor: ColorsWidgets.darkGreen,
+                            ),
+                          ),
+              
+                          SizedBox(height: 12),
+              
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+              
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  context.read<AuthBloc>().add(
+                                    SelectRoleEvent(role: "user"),
+                                  );
+                                },
+                                child: Container(
+                                  width: 100,
+                                   height:54,
+                                  padding: EdgeInsets.symmetric(vertical: 16),
+                                  decoration: BoxDecoration(
+                                    color: state.selectedRole == "user"
+                                        ? ColorsWidgets.white
+                                        : ColorsWidgets.lightGreen,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: state.selectedRole == "user"
+                                          ? ColorsWidgets.darkGreen
+                                          : Colors.transparent,
+              
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Users",
+                                      style: FontsWidgets.poppins(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: state.selectedRole == "user"
+                                            ? Colors.black
+                                            : ColorsWidgets.darkGreen,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+              
+                              SizedBox(width: 12),
+              
+                              GestureDetector(
+                                onTap: () {
+                                  context.read<AuthBloc>().add(
+                                    SelectRoleEvent(role: "admin"),
+                                  );
+                                },
+                                child: Container(      width: 100,
+                                  height:54,
+              
+                                  padding: EdgeInsets.symmetric(vertical: 16),
+                                  decoration: BoxDecoration(
+                                    color: state.selectedRole == "admin"
+                                        ? ColorsWidgets.white
+                                        : ColorsWidgets.lightGreen,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: state.selectedRole == "admin"
+                                          ? ColorsWidgets.darkGreen
+                                          : Colors.transparent,
+                                                                 ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Admin",
+                                      style: FontsWidgets.poppins(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: state.selectedRole == "admin"
+                                            ? Colors.black
+                                            : ColorsWidgets.darkGreen,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
             bottomWidget: SingleChildScrollView(
@@ -450,6 +556,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                                 .trim(),
                                         createdAt: DateTime.now().toString(),
                                         updatedAt: DateTime.now().toString(),
+                                        role: state.selectedRole.toString(), uid: '',
                                       ),
                                     ),
                                   );

@@ -1,13 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fin_wise/AppRoute/app_route.dart';
 import 'package:fin_wise/Bloc/AuthBloc/auth_bloc.dart';
 import 'package:fin_wise/Bloc/CategorieBloc/categorie_bloc.dart';
+import 'package:fin_wise/Bloc/ChatBloc/chat_bloc.dart';
 import 'package:fin_wise/Bloc/ExpenseBloc/expense_bloc.dart';
 import 'package:fin_wise/Bloc/LanguageBloc/language_state.dart';
 import 'package:fin_wise/Bloc/OnboardingBloc/onboarding_bloc.dart';
 import 'package:fin_wise/Network/Services/notification_service.dart';
 import 'package:fin_wise/SessionManage/shared_pref.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/BiomatricService/biomatric_service.dart';
+import 'package:fin_wise/Utilites/GlobalWidgets/FirebaseInstanceClass/firebase_instance_class.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,6 +48,14 @@ Future<void> main() async {
 
   await NotificationService.init();
 
+
+
+  // final currentUser = FirebaseAuth.instance.currentUser;
+  // if (currentUser != null) {
+  //   final statusHandler = RealtimeStatusHandler(uid: currentUser.uid);
+  //   statusHandler.start(); // sets online and onDisconnect
+  // }
+
   // final notificationService=NotificationService();
   // await notificationService.init();
 
@@ -59,11 +72,14 @@ Future<void> main() async {
         BlocProvider<ExpenseBloc>(create: (context) => ExpenseBloc(repository,)),
         BlocProvider<NotificationBloc>(create: (context) => NotificationBloc(repository,)),
         BlocProvider<SettingBloc>(create: (context) => SettingBloc()),
+        BlocProvider<ChatBloc>(create: (context) => ChatBloc(repository)),
         BlocProvider<ProfileBloc>(create: (context) => ProfileBloc(authBloc: context.read<AuthBloc>(),)),
         BlocProvider<LanguageBloc>(
           create: (context) => LanguageBloc()..add(LoadLanguageEvent()),
         ),      ],
-      child:  MyApp(),
+      child:    AppLifecycleHandler(
+        child: MyApp(),
+      ),
     ),
   );
 }
@@ -102,3 +118,94 @@ class MyApp extends StatelessWidget {
 );
   }
 }
+
+
+
+
+class AppLifecycleHandler extends StatefulWidget {
+  final Widget child;
+  const AppLifecycleHandler({required this.child});
+
+  @override
+  State<AppLifecycleHandler> createState() => _AppLifecycleHandlerState();
+}
+
+class _AppLifecycleHandlerState extends State<AppLifecycleHandler>
+    with WidgetsBindingObserver {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    setOnline();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    setOffline();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      setOnline();
+    } else {
+      setOffline();
+    }
+  }
+
+  Future<void> setOnline() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({
+      "online": true,
+    });
+  }
+
+  Future<void> setOffline() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({
+      "online": false,
+      "lastSeen": FieldValue.serverTimestamp(),
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
+  }
+}
+// class RealtimeStatusHandler {
+//   final String uid;
+//   late final DatabaseReference ref;
+//
+//   RealtimeStatusHandler({required this.uid}) {
+//     ref = FirebaseDatabase.instance.ref('usersStatus/$uid');
+//   }
+//
+//   void start() async {
+//     // Set online immediately
+//     await ref.set({
+//       'status': 'online',
+//       'lastSeen': ServerValue.timestamp,
+//     });
+//
+//     // Automatically set offline when app disconnects
+//     ref.onDisconnect().set({
+//       'status': 'offline',
+//       'lastSeen': ServerValue.timestamp,
+//     });
+//   }
+//
+//   void setOffline() {
+//     ref.set({
+//       'status': 'offline',
+//       'lastSeen': ServerValue.timestamp,
+//     });
+//   }
+// }

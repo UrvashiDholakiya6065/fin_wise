@@ -52,6 +52,7 @@ dependencies:
   flutter_local_notifications: ^21.0.0
   flutter_localization:
   http:
+  firebase_database:
 
 
 dev_dependencies:

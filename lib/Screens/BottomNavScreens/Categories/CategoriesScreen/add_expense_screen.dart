@@ -128,11 +128,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   contentVertical: 10,
                   fillColor: ColorsWidgets.lightGreen,
                   hintFontColor: ColorsWidgets.darkGreen.withOpacity(0.34),
-                  // suffixIcon: Icon(
-                  //   Icons.expand_more,
-                  //   color: ColorsWidgets.mainAppColor,
-                  //   size: 24,
-                  // ),
                 ),
 
                 SizedBox(height: 19),
@@ -187,19 +182,6 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                 BlocConsumer<ExpenseBloc, ExpenseState>(
                   listener: (context, state) async {
                     if (state.expenseStatus == ExpenseStatus.success) {
-                      // final balance = state.addBalanceModel;
-                      // final double? balance = await SharedPref.getBalance();
-                      // final balance = state.addBalanceModel;
-                      // final expenses = state.expenseList ?? [];
-                      // double remainingBalance = 0;
-                      //
-                      // remainingBalance = Methods().getRemainingBalance(
-                      //   balance!,
-                      //   expenses,
-                      //   widget.cateId,
-                      // );
-
-
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Expense added successfully")),
                       );

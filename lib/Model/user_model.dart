@@ -7,6 +7,8 @@ class UserModel {
   final String confirmPassword;
   final String createdAt;
   final String updatedAt;
+  final String role;
+  final String uid;
 
   UserModel({
     required this.fullName,
@@ -17,18 +19,23 @@ class UserModel {
     required this.confirmPassword,
     required this.createdAt,
     required this.updatedAt,
+    required this.role,
+    required this.uid,
   });
 
+  /// ✅ FROM JSON
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      fullName: json['fullName'],
-      email: json['email'],
-      mobileNumber: json['mobileNumber'] ,
-      dob: json['dob'],
-      password: json['password'],
-      confirmPassword: json['confirmPassword'] ,
-      createdAt: json['createdAt'] ,
-      updatedAt: json['updatedAt'] ,
+      fullName: json['fullName'] ?? "",
+      email: json['email'] ?? "",
+      mobileNumber: json['mobileNumber'] ?? "",
+      dob: json['dob'] ?? "",
+      password: json['password'] ?? "",
+      confirmPassword: json['confirmPassword'] ?? "",
+      createdAt: json['createdAt'] ?? "",
+      updatedAt: json['updatedAt'] ?? "",
+      role: json['role'] ?? "",
+      uid: json['uid'] ?? "",
     );
   }
 
@@ -42,6 +49,34 @@ class UserModel {
       "confirmPassword": confirmPassword,
       "createdAt": createdAt,
       "updatedAt": updatedAt,
+      "role": role,
+      "uid": uid,
     };
+  }
+
+  UserModel copyWith({
+    String? fullName,
+    String? email,
+    String? mobileNumber,
+    String? dob,
+    String? password,
+    String? confirmPassword,
+    String? createdAt,
+    String? updatedAt,
+    String? role,
+    String? uid,
+  }) {
+    return UserModel(
+      fullName: fullName ?? this.fullName,
+      email: email ?? this.email,
+      mobileNumber: mobileNumber ?? this.mobileNumber,
+      dob: dob ?? this.dob,
+      password: password ?? this.password,
+      confirmPassword: confirmPassword ?? this.confirmPassword,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      role: role ?? this.role,
+      uid: uid ?? this.uid,
+    );
   }
 }

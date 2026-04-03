@@ -7,6 +7,8 @@ import 'package:fin_wise/Screens/AuthScreens/new_password_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Analysis/AnalysisScreen/analysis_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Categories/CategoriesScreen/categories_detail_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Home/HomeScreen/home_screen.dart';
+import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/chat_list_screen.dart';
+import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/chat_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/edit_profile.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/notification_setting_screen.dart';
 import 'package:fin_wise/Screens/BottomNavScreens/Profile/ProfileScreen/password_setting_screen.dart';
@@ -95,7 +97,22 @@ GoRouter appRoute = GoRouter(
     GoRoute(
       path: AppRoutePath.calenderScreen.path,
       builder: (context, state) => CalenderScreen(),
+    ), GoRoute(
+      path: AppRoutePath.chatListScreen.path,
+      builder: (context, state) => ChatListScreen(),
     ),
+    GoRoute(
+      path: AppRoutePath.chatScreen.path,
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+
+        return ChatScreen(
+          currentId: data['currentUserId']!,
+          receiverId: data['otherUserId']!, receiverName: data['name'],senderName: data['senderName'],
+        );
+      },
+    ),
+
     //     GoRoute(
     //       path: AppRoutePath.addExpenseScreen.path,
     //       builder: (context, state) {

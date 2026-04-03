@@ -277,7 +277,7 @@ class _EditProfileState extends State<EditProfile> {
                                                 password: passwordController.text.trim(),
                                                 confirmPassword: confirmPasswordController.text.trim(),
                                                 createdAt: state.userModel!.createdAt,
-                                                updatedAt: DateTime.now().toString(),
+                                                updatedAt: DateTime.now().toString(), role: '', uid: '',
                                               ),
                                             ),
                                           );
