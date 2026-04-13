@@ -49,3 +49,27 @@ class DeleteMessageEvent extends ChatEvent {
 
   DeleteMessageEvent(this.conversationId);
 }
+class SetReplyingMessageEvent extends ChatEvent {
+  final ChatModel message;
+  SetReplyingMessageEvent(this.message);
+}
+
+class ClearReplyingMessageEvent extends ChatEvent {}
+class EditMessageEvent extends ChatEvent {
+  final String conversationId;
+  final String messageId;
+  final String newMsg;
+
+  EditMessageEvent({
+    required this.conversationId,
+    required this.messageId,
+    required this.newMsg,
+  });
+}
+
+class SetEditMessageEvent extends ChatEvent {
+  final ChatModel message;
+
+  SetEditMessageEvent(this.message);
+}
+class ClearEditMessageEvent extends ChatEvent {}

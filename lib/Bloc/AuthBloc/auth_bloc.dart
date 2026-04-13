@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fin_wise/AppRoute/app_route_path.dart';
 import 'package:fin_wise/Utilites/GlobalWidgets/Enum/enum.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../AppRoute/app_route.dart';
 import '../../Network/Repository/repository.dart';
 import '../../SessionManage/shared_pref.dart';

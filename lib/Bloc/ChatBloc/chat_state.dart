@@ -8,6 +8,8 @@ class ChatState extends Equatable {
   final int unreadCount;
   final List<String>? selectedMessages;
   final bool isSelectionMode;
+  final ChatModel? replyingMessage;
+  final ChatModel? editingMessage;
 
 
 
@@ -18,6 +20,8 @@ class ChatState extends Equatable {
    this.chatStatus,
    this.selectedMessages,
     this.isSelectionMode = false,
+    this.replyingMessage,
+    this.editingMessage
 
 
   });
@@ -27,6 +31,9 @@ class ChatState extends Equatable {
     int? unreadCount,ChatStatus? chatStatus,
     List<String>? selectedMessages,
     bool? isSelectionMode,
+    ChatModel? replyingMessage,
+     ChatModel? editingMessage,
+
 
   }) {
     return ChatState(
@@ -34,10 +41,13 @@ class ChatState extends Equatable {
         unreadCount: unreadCount ?? this.unreadCount,
       chatStatus: chatStatus??this.chatStatus,
       selectedMessages: selectedMessages??this.selectedMessages,
-        isSelectionMode:isSelectionMode??this.isSelectionMode
+        isSelectionMode:isSelectionMode??this.isSelectionMode,
+      replyingMessage: replyingMessage,
+      editingMessage: editingMessage??editingMessage
+
     );
   }
 
   @override
-  List<Object?> get props => [messages, unreadCount,selectedMessages,isSelectionMode];
+  List<Object?> get props => [messages, unreadCount,selectedMessages,isSelectionMode,replyingMessage,editingMessage];
 }

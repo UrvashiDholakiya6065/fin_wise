@@ -1,26 +1,41 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../Model/user_model.dart';
 import '../../../../Network/Repository/repository.dart';
 import '../../../../Utilites/GlobalWidgets/Colors/colors_widgets.dart';
 import 'conversation_id.dart';
-import 'date_fromat.dart';
+
+String formatTime(DateTime time) {
+  final now = DateTime.now();
+
+  if (now.difference(time).inDays == 0) {
+    int hour = time.hour > 12 ? time.hour - 12 : time.hour;
+    hour = hour == 0 ? 12 : hour;
+    String amPm = time.hour >= 12 ? "PM" : "AM";
+
+    return "$hour:${time.minute.toString().padLeft(2, '0')} $amPm";
+  } else if (now.difference(time).inDays == 1) {
+    return "Yesterday";
+  } else {
+    return "${time.day}/${time.month}";
+  }
+}
 
 Widget chatItem(UserModel item, String currentUserId) {
+  final conversationId = getConversationId(currentUserId, item.uid);
+
   return StreamBuilder<DocumentSnapshot>(
     stream: FirebaseFirestore.instance
         .collection('users')
         .doc(item.uid)
         .snapshots(),
-    builder: (context, snapshot) {
+    builder: (context, userSnap) {
+      if (!userSnap.hasData) return SizedBox();
 
-      if (!snapshot.hasData) {
-        return SizedBox();
-      }
-
-      final data = snapshot.data!.data() as Map<String, dynamic>;
-      bool isOnline = data['online'] ?? false;
+      final userData = userSnap.data!.data() as Map<String, dynamic>;
+      bool isOnline = userData['online'] ?? false;
 
       return Container(
         margin: EdgeInsets.only(bottom: 12),
@@ -37,7 +52,6 @@ Widget chatItem(UserModel item, String currentUserId) {
                   radius: 24,
                   child: Text(item.fullName[0]),
                 ),
-
                 Positioned(
                   bottom: 0,
                   right: 0,
@@ -69,12 +83,39 @@ Widget chatItem(UserModel item, String currentUserId) {
                   ),
                   SizedBox(height: 4),
 
-                  Text(
-                    isOnline ? "Online" : "Offline",
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
-                    ),
+                    StreamBuilder<DocumentSnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('conversations')
+                        .doc(conversationId)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData ||
+                          !snapshot.data!.exists) {
+                        return Text(
+                          "No messages yet",
+                          style: TextStyle(
+                              fontSize: 13, color: Colors.grey),
+                        );
+                      }
+
+                      final data =
+                      snapshot.data!.data() as Map<String, dynamic>;
+
+                      String message = data['lastMessage'] ?? '';
+                      String senderId = data['lastSenderId'] ?? '';
+
+                      return Text(
+                        senderId == currentUserId
+                            ? "You: $message"
+                            : message,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey,
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -83,18 +124,58 @@ Widget chatItem(UserModel item, String currentUserId) {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  formatTime(item.createdAt),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
+                StreamBuilder<DocumentSnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('conversations')
+                      .doc(conversationId)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData ||
+                        !snapshot.data!.exists) {
+                      return SizedBox();
+                    }
+
+                    final data =
+                    snapshot.data!.data() as Map<String, dynamic>;
+
+                    final timestamp = data['lastMessageTime'];
+                    String senderId = data['lastSenderId'] ?? '';
+
+                    if (timestamp == null) return SizedBox();
+
+                    DateTime time =
+                    (timestamp as Timestamp).toDate();
+
+                    return Column(
+                      children: [
+                        Text(
+                          formatTime(time),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        if (senderId == currentUserId)
+                          Icon(
+                            data['lastMessageRead'] == true
+                                ? Icons.done_all
+                                : Icons.done,
+                            size: 16,
+                            color: data['lastMessageRead'] == true
+                                ? Colors.blue
+                                : Colors.grey,
+                          ),
+
+                      ],
+                    );
+                  },
                 ),
+
                 SizedBox(height: 6),
 
                 StreamBuilder<int>(
                   stream: Repository().getUnreadCount(
-                    getConversationId(currentUserId, item.uid),
+                    conversationId,
                     currentUserId,
                   ),
                   builder: (context, snapshot) {
@@ -103,7 +184,7 @@ Widget chatItem(UserModel item, String currentUserId) {
                     }
 
                     return Container(
-                      padding: const EdgeInsets.all(6),
+                      padding: EdgeInsets.all(6),
                       decoration: BoxDecoration(
                         color: ColorsWidgets.mainAppColor,
                         shape: BoxShape.circle,

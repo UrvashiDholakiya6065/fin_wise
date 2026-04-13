@@ -14,6 +14,8 @@ class ChatModel {
   final String? status;
   final bool isEdited;
   final DateTime? lastSeen;
+  String? replyMessageId;
+
 
   ChatModel({
     this.id,
@@ -31,7 +33,9 @@ class ChatModel {
     this.reaction,
     this.isEdited = false,
     this.status,
-    this.lastSeen
+    this.lastSeen,
+    this.replyMessageId,
+
   });
 
   ChatModel copyWith({
@@ -51,6 +55,7 @@ class ChatModel {
     bool? isEdited,
     String? status,
      DateTime? lastSeen,
+    String? replyMessageId,
 
   }) {
     return ChatModel(      id: id ?? this.id,
@@ -69,7 +74,8 @@ class ChatModel {
       reaction: reaction??this.reaction,
       isEdited: isEdited ?? this.isEdited,
       status: status??this.status,
-      lastSeen: lastSeen??this.lastSeen
+      lastSeen: lastSeen??this.lastSeen,
+      replyMessageId: replyMessageId??this.replyMessageId
     );
   }
 
@@ -88,7 +94,9 @@ class ChatModel {
       "reaction":reaction,
       "id":id,
       "status":status,
-      "lastSeen":lastSeen
+      "lastSeen":lastSeen,
+      "replyMessageId":replyMessageId,
+      "isEdited": isEdited,
     };
   }
 
@@ -107,7 +115,10 @@ class ChatModel {
         reaction: json["reaction"],
         status: json["status"],
         id: id,
-      lastSeen: json["lastSeen"]
+      lastSeen: json["lastSeen"],
+        replyMessageId:json["replyMessageId"],
+      isEdited: json["isEdited"] ?? false, // ✅ ADD THIS
+
     );
   }
 }

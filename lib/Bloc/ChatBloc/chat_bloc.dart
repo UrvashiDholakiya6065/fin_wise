@@ -19,6 +19,11 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<ToggleSelectMessageEvent>(toggleMessage);
     on<ClearSelectionEvent>(clearSelection);
     on<DeleteMessageEvent>(deleteMessage);
+    on<SetReplyingMessageEvent>(seReply);
+    on<ClearReplyingMessageEvent>(clearReply);
+    on<EditMessageEvent>(onEditMessage);
+    on<SetEditMessageEvent>(setEditMessage);
+    on<ClearEditMessageEvent>(clearEditMessage);
   }
 
   Future<void> onSendMessage(SendMessageEvent event, emit) async {
@@ -39,7 +44,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     await emit.forEach<List<ChatModel>>(
       repository.getMessages(event.conversationId),
       onData: (messages) {
-        return state.copyWith(messages: messages);
+        return state.copyWith(messages: messages,selectedMessages: []);
       },
     );
   }
@@ -76,18 +81,32 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
 
   void toggleMessage (ToggleSelectMessageEvent event,emit){
-    final selected = List<String>.from(state.selectedMessages??[]);
+    // final selected = List<String>.from(state.selectedMessages??[]);
+    //
+    // if (selected.contains(event.messageId)) {
+    //   selected.remove(event.messageId);
+    // } else {
+    //   selected.add(event.messageId);
+    // }
+    //
+    // emit(state.copyWith(
+    //   selectedMessages: selected,
+    //   isSelectionMode: selected.isNotEmpty,
+    //   editingMessage: null
+    // ));
+      final selected = List<String>.from(state.selectedMessages ?? []);
 
-    if (selected.contains(event.messageId)) {
-      selected.remove(event.messageId);
-    } else {
-      selected.add(event.messageId);
-    }
+      if (selected.contains(event.messageId)) {
+        selected.remove(event.messageId);
+      } else {
+        selected.add(event.messageId);
+      }
 
-    emit(state.copyWith(
-      selectedMessages: selected,
-      isSelectionMode: selected.isNotEmpty,
-    ));
+      emit(state.copyWith(
+        selectedMessages: selected,
+        isSelectionMode: selected.isNotEmpty,
+      ));
+
   }
 
 void clearSelection(ClearSelectionEvent event,emit){
@@ -116,5 +135,37 @@ Future<void> deleteMessage(DeleteMessageEvent event,emit) async {
   ));
 }
 
+void seReply(SetReplyingMessageEvent event,emit){
+  emit(state.copyWith(replyingMessage: event.message));
+
+}
+
+
+void clearReply(ClearReplyingMessageEvent event,emit){
+  emit(state.copyWith(replyingMessage: null));
+
+}
+
+  void onEditMessage(EditMessageEvent event, Emitter<ChatState> emit) async {
+    await repository.editMessage(
+      event.conversationId,
+      event.messageId,
+      event.newMsg,
+    );
+    // Reload messages
+    add(LoadMessagesEvent(event.conversationId, '')); // Pass currentUserId if needed
+  }
+
+  void setEditMessage(SetEditMessageEvent event,emit){
+    emit(state.copyWith(
+      editingMessage: event.message,
+      selectedMessages:[],
+      isSelectionMode: false
+    ));
+  }
+
+void clearEditMessage(ClearEditMessageEvent event ,emit){
+    emit(state.copyWith(editingMessage: null));
+}
 }
 

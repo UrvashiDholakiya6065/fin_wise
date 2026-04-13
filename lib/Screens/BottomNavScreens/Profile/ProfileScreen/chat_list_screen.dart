@@ -6,11 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Bloc/AuthBloc/auth_event.dart';
-import '../../../../Bloc/ChatBloc/chat_bloc.dart';
-import '../../../../Bloc/ChatBloc/chat_event.dart';
 import '../../../../Utilites/GlobalWidgets/Enum/enum.dart';
 import '../ProfileWidgets/chat_item.dart';
-import '../ProfileWidgets/conversation_id.dart';
+import '../ProfileWidgets/chat_list_smmmer.dart';
 
 class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
@@ -31,9 +29,6 @@ class _ChatListScreenState extends State<ChatListScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        // if (state.chatListStatus == ChatListStatus.loading) {
-        //   return Center(child: CircularProgressIndicator());
-        // }
 
         if (state.chatListStatus == ChatListStatus.error) {
           return Center(child: Text("Error loading chats"));
@@ -43,15 +38,16 @@ class _ChatListScreenState extends State<ChatListScreen> {
           body: SafeArea(
             child: Builder(
               builder: (context) {
-
-                // if (state.chatListStatus == ChatListStatus.loading) {
-                //   return Center(child: CircularProgressIndicator());
-                // }
-
                 if (state.chatListStatus == ChatListStatus.error) {
                   return Center(child: Text("Error loading chats"));
-                }
+                }   
+                if (state.chatListStatus == ChatListStatus.loading) {
+                  final count = state.selectedRole == "user"
+                      ? state.admins.length
+                      : state.users.length;
 
+                  return  ChatListShimmer(itemCount: count,);
+                }
                 return Column(
                   children: [
                     Padding(

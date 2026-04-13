@@ -114,7 +114,6 @@ class Repository {
   Future<List<CategorieModel>> getCategories() async {
     try {
       String? uid = await SharedPref.getUserUid();
-
       final snapshot = await FirebaseInstanceClass.fireStore
           .collection('categories')
           .where('userId', isEqualTo: uid)
@@ -330,6 +329,32 @@ class Repository {
     }
   }
 
+  // Future<void> sendMessage({required ChatModel chatModel}) async {
+  //   try {
+  //     String conversationId = getConversationId(
+  //       chatModel.senderId ?? "",
+  //       chatModel.receiverId ?? "",
+  //     );
+  //
+  //     print("Conversation ID::: $conversationId");
+  //     print("Message JSON::: ${chatModel.toJson()}");
+  //
+  //
+  //     await FirebaseFirestore.instance
+  //         .collection("conversations")
+  //         .doc(conversationId)
+  //         .collection("chat")
+  //         .add(chatModel.toJson());
+  //
+  //     print("Message sent successfully");
+  //   } catch (e, stack) {
+  //     print("FIRESTORE ERROR: $e");
+  //     print("STACK: $stack");
+  //   }
+  // }
+
+
+
   Future<void> sendMessage({required ChatModel chatModel}) async {
     try {
       String conversationId = getConversationId(
@@ -337,20 +362,27 @@ class Repository {
         chatModel.receiverId ?? "",
       );
 
-      print("Conversation ID::: $conversationId");
-      print("Message JSON::: ${chatModel.toJson()}");
-
-
-      await FirebaseFirestore.instance
+      final chatRef = FirebaseFirestore.instance
           .collection("conversations")
           .doc(conversationId)
-          .collection("chat")
-          .add(chatModel.toJson());
+          .collection("chat");
+
+      final conversationRef = FirebaseFirestore.instance
+          .collection("conversations")
+          .doc(conversationId);
+
+      await chatRef.add(chatModel.toJson());
+
+      await conversationRef.set({
+        "lastMessage": chatModel.msg,
+        "lastMessageTime": FieldValue.serverTimestamp(),
+        "lastSenderId": chatModel.senderId,
+        "lastMessageRead": false,
+      }, SetOptions(merge: true));
 
       print("Message sent successfully");
-    } catch (e, stack) {
-      print("FIRESTORE ERROR: $e");
-      print("STACK: $stack");
+    } catch (e) {
+      print("Error: $e");
     }
   }
   Stream<List<ChatModel>> getMessages(String conversationId) {
@@ -365,10 +397,46 @@ class Repository {
     }).toList());
   }
 
-  Future<void> markMessagesAsRead(String conversationId, String currentUserId) async {
-    final snapshot = await FirebaseFirestore.instance
+  // Future<void> markMessagesAsRead(String conversationId, String currentUserId) async {
+  //   final snapshot = await FirebaseFirestore.instance
+  //       .collection("conversations")
+  //       .doc(conversationId)
+  //       .collection("chat")
+  //       .where("receiverId", isEqualTo: currentUserId)
+  //       .where("isRead", isEqualTo: false)
+  //       .get();
+  //
+  //   for (var doc in snapshot.docs) {
+  //     await doc.reference.update({"isRead": true});
+  //   }
+  //   await FirebaseFirestore.instance
+  //       .collection("conversations")
+  //       .doc(conversationId)
+  //       .update({
+  //     "lastMessageRead": true,
+  //   });
+  // }
+
+  Future<void> markMessagesAsRead(
+      String conversationId,
+      String currentUserId,
+      ) async {
+
+    final convoRef = FirebaseFirestore.instance
         .collection("conversations")
-        .doc(conversationId)
+        .doc(conversationId);
+
+    final convo = await convoRef.get();
+
+    if (!convo.exists) return;
+
+    final data = convo.data() as Map<String, dynamic>;
+
+    if (data['lastSenderId'] == currentUserId) {
+      return;
+    }
+
+    final snapshot = await convoRef
         .collection("chat")
         .where("receiverId", isEqualTo: currentUserId)
         .where("isRead", isEqualTo: false)
@@ -377,6 +445,10 @@ class Repository {
     for (var doc in snapshot.docs) {
       await doc.reference.update({"isRead": true});
     }
+
+    await convoRef.update({
+      "lastMessageRead": true,
+    });
   }
   Stream<int> getUnreadCount(String conversationId, String currentUserId) {
     return FirebaseFirestore.instance
@@ -399,6 +471,22 @@ class Repository {
           .collection('chat')
           .doc(id)
           .delete();
+    }
+  }
+  Future<void> editMessage(String conversationId, String messageId, String newMsg) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("conversations")
+          .doc(conversationId)
+          .collection("chat")
+          .doc(messageId)
+          .update({
+        'msg': newMsg,
+        'isEdited': true,
+      });
+      print("Message edited successfully");
+    } catch (e) {
+      print("Failed to edit message: $e");
     }
   }
 
