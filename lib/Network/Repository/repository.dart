@@ -113,6 +113,7 @@ class Repository {
 
   Future<List<CategorieModel>> getCategories() async {
     try {
+
       String? uid = await SharedPref.getUserUid();
       final snapshot = await FirebaseInstanceClass.fireStore
           .collection('categories')
